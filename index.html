@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Space Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- 3D 캔버스 컨테이너 -->
+    <div id="canvas-container"></div>
+
+    <!-- 로딩 화면 -->
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="loader-ring"></div>
+            <span>우주로 진입 중...</span>
+        </div>
+    </div>
+
+    <!-- 안내 텍스트 -->
+    <div id="guide-text">
+        <span>드래그하여 우주를 탐험하세요</span>
+    </div>
+
+    <!-- 상세 보기 모달 -->
+    <div id="detail-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="닫기">&times;</button>
+            <div class="modal-header">
+                <h2 id="modal-title">제목</h2>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- 동적 콘텐츠 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 네비게이션 (하단) -->
+    <nav id="nav-indicator">
+        <div class="nav-item" data-section="about">About</div>
+        <div class="nav-item" data-section="skills">Skills</div>
+        <div class="nav-item" data-section="projects">Projects</div>
+        <div class="nav-item" data-section="experience">Experience</div>
+        <div class="nav-item" data-section="contact">Contact</div>
+    </nav>
+
+    <script src="main.js"></script>
+</body>
+</html>
