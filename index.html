@@ -3,49 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Space Portfolio</title>
+    <title>Song Junseo | Creative Developer</title>
+    <meta name="description" content="Portfolio of Song Junseo, a developer specializing in Python, Backend, and Drone Technology.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-    <!-- Three.js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <!-- 3D 캔버스 컨테이너 -->
-    <div id="canvas-container"></div>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-    <!-- 로딩 화면 -->
-    <div id="loading-screen">
-        <div class="loader">
-            <div class="loader-ring"></div>
-            <span>우주로 진입 중...</span>
+    <header class="header">
+        <div class="logo">JUNSEO.</div>
+        <nav class="nav">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
         </div>
-    </div>
+    </header>
 
-    <!-- 안내 텍스트 -->
-    <div id="guide-text">
-        <span>드래그하여 우주를 탐험하세요</span>
-    </div>
-
-    <!-- 상세 보기 모달 -->
-    <div id="detail-modal" class="modal hidden">
-        <div class="modal-content">
-            <button class="close-btn" aria-label="닫기">&times;</button>
-            <div class="modal-header">
-                <h2 id="modal-title">제목</h2>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2 class="hero-subtitle">Backend Developer & Drone Specialist</h2>
+                <h1 class="hero-title">
+                    <span class="line">Building the</span>
+                    <span class="line">Future with</span>
+                    <span class="line text-gradient">Code & Flight.</span>
+                </h1>
+                <p class="hero-desc">
+                    Creating robust backend systems and exploring the skies with drone technology.
+                    Based in Seoul, KR.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">View Work</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
             </div>
-            <div class="modal-body" id="modal-body">
-                <!-- 동적 콘텐츠 -->
+            <div class="hero-visual">
+                <div class="circle-gradient"></div>
+                <!-- Abstract 3D shape or tech visual could go here -->
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll</span>
+                <div class="line"></div>
+            </div>
+        </section>
+
+        <section id="about" class="section about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">01</span>
+                    <h2 class="section-title">About Me</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p class="lead">
+                            I am Song Junseo, a passionate developer with a unique blend of skills in software engineering and drone technology.
+                        </p>
+                        <p>
+                            Graduated from Seoul Robot High School, I have honed my skills in Python, Django, and FastAPI. 
+                            My journey isn't just about code; it's about solving real-world problems, whether it's creating 
+                            efficient SaaS platforms like the Discord R Chatbot or piloting unmanned multi-copters.
+                        </p>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <span class="stat-num">1+</span>
+                                <span class="stat-label">Years Coding</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-num">10+</span>
+                                <span class="stat-label">Projects</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <!-- Placeholder for profile image -->
+                        <div class="img-placeholder"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">02</span>
+                    <h2 class="section-title">Expertise</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">🐍</div>
+                        <h3>Python Ecosystem</h3>
+                        <p>Django, FastAPI, PyTorch. Building scalable backends and AI integrations.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🤖</div>
+                        <h3>AI & RAG</h3>
+                        <p>Implementing Retrieval-Augmented Generation for intelligent chatbots and services.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🚁</div>
+                        <h3>Drone Tech</h3>
+                        <p>Certified Ultralight Vehicle Pilot. Experience in drone construction and RF communication.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">☁️</div>
+                        <h3>DevOps & Cloud</h3>
+                        <p>Linux server management, Docker, and cloud deployment strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">03</span>
+                    <h2 class="section-title">Selected Works</h2>
+                </div>
+                <div class="project-list">
+                    <!-- Project 1 -->
+                    <article class="project-item">
+                        <div class="project-content">
+                            <h3 class="project-title">Discord R Chatbot</h3>
+                            <p class="project-desc">
+                                A SaaS platform for game community management. Features real-time Q&A using RAG technology, 
+                                automating support for server administrators.
+                            </p>
+                            <ul class="project-tags">
+                                <li>FastAPI</li>
+                                <li>RAG</li>
+                                <li>ChromaDB</li>
+                                <li>Python</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://rchat.kr" target="_blank" class="link-arrow">Visit Site</a>
+                            </div>
+                        </div>
+                        <div class="project-visual">
+                            <div class="visual-placeholder" style="background: linear-gradient(45deg, #5865F2, #404EED);"></div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="project-item">
+                        <div class="project-content">
+                            <h3 class="project-title">SSAFY AI Challenge – VQA</h3>
+                            <p class="project-desc">
+                                Improved VQA performance from baseline 0.76028 to 0.94187 using Qwen2.5-VL. 
+                                Performed data analysis, LoRA fine-tuning, TTA, and systematic experiment tracking on AWS G5/A100 infrastructure.
+                            </p>
+                            <ul class="project-tags">
+                                <li>Qwen2.5-VL</li>
+                                <li>Python</li>
+                                <li>AWS</li>
+                                <li>VQA</li>
+                            </ul>
+                        </div>
+                        <div class="project-visual">
+                            <div class="visual-placeholder" style="background: linear-gradient(45deg, #8e44ad, #9b59b6);"></div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="project-item">
+                        <div class="project-content">
+                            <h3 class="project-title">Industrial Drone Control</h3>
+                            <p class="project-desc">
+                                Competed in the Industrial Drone Control Skills Competition. 
+                                Specialized in assembling industrial drones and programming autonomous flight missions using Pixhawk flight controllers and Mission Planner.
+                            </p>
+                            <ul class="project-tags">
+                                <li>Pixhawk</li>
+                                <li>Mission Planner</li>
+                                <li>Autonomous Flight</li>
+                                <li>Drone Assembly</li>
+                            </ul>
+                        </div>
+                        <div class="project-visual">
+                            <div class="visual-placeholder" style="background: linear-gradient(45deg, #FF5733, #C70039);"></div>
+                        </div>
+                    </article>
+
+                    <!-- Project 5 -->
+                    <article class="project-item">
+                        <div class="project-content">
+                            <h3 class="project-title">SelF – Agricultural E-commerce</h3>
+                            <p class="project-desc">
+                                E-commerce platform for agricultural products. Implemented the entire Django REST API backend (Members, Products, Orders). 
+                                Designed user behavior logging (Views, Cart, Wishlist, Purchase) and implemented recommendation algorithms. 
+                                Collaborated on Frontend design and layout discussions.
+                            </p>
+                            <ul class="project-tags">
+                                <li>Django</li>
+                                <li>REST API</li>
+                                <li>Recommendation System</li>
+                                <li>Data Logging</li>
+                            </ul>
+                        </div>
+                        <div class="project-visual">
+                            <div class="visual-placeholder" style="background: linear-gradient(45deg, #f1c40f, #f39c12);"></div>
+                        </div>
+                    </article>
+
+                    <!-- Project 4 -->
+                    <article class="project-item">
+                        <div class="project-content">
+                            <h3 class="project-title">Mine X Network</h3>
+                            <p class="project-desc">
+                                Operated a Minecraft server (Oct 2024 - May 2025) with 1,000+ cumulative players. 
+                                Focused on server optimization using Ubuntu Linux and proxy splitting. Implemented robust security measures including Cloudflare Spectrum and origin/proxy separation to defend against DDoS attacks. Developed custom plugins using Java.
+                            </p>
+                            <ul class="project-tags">
+                                <li>Ubuntu Linux</li>
+                                <li>Cloudflare Spectrum</li>
+                                <li>Java</li>
+                                <li>Server Security</li>
+                            </ul>
+                        </div>
+                        <div class="project-visual">
+                            <div class="visual-placeholder" style="background: linear-gradient(45deg, #2ecc71, #27ae60);"></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-content">
+                        <h2 class="contact-title">Let's Work Together</h2>
+                        <p class="contact-text">
+                            Interested in collaborating or have a project in mind? 
+                            I'm always open to new challenges in backend development and drone tech.
+                        </p>
+                        <div class="social-links">
+                            <a href="mailto:junseo5.dev@gmail.com">junseo5.dev@gmail.com</a>
+                            <a href="https://github.com/Junseo5" target="_blank">GitHub</a>
+                            <a href="https://junseo5.com" target="_blank">Portfolio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Song Junseo. All rights reserved.</p>
+                <p>Designed & Built with 💻 & ☕</p>
             </div>
         </div>
-    </div>
-
-    <!-- 네비게이션 (하단) -->
-    <nav id="nav-indicator">
-        <div class="nav-item" data-section="about">About</div>
-        <div class="nav-item" data-section="skills">Skills</div>
-        <div class="nav-item" data-section="projects">Projects</div>
-        <div class="nav-item" data-section="experience">Experience</div>
-        <div class="nav-item" data-section="contact">Contact</div>
-    </nav>
+    </footer>
 
     <script src="main.js"></script>
 </body>
