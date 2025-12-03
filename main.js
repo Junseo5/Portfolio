@@ -36,46 +36,32 @@ const heroTimeline = gsap.timeline();
 heroTimeline
     .from('.logo', {
         y: -50,
-        opacity: 0,
+        autoAlpha: 0,
         duration: 1,
         ease: 'power4.out'
     })
-    .from('.nav-link', {
-        y: -50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: 'power4.out'
-    }, '-=0.8')
     .from('.hero-subtitle', {
         y: 30,
-        opacity: 0,
+        autoAlpha: 0,
         duration: 1,
         ease: 'power3.out'
     }, '-=0.5')
     .from('.hero-title .line', {
         y: 100,
-        opacity: 0,
+        autoAlpha: 0,
         duration: 1,
         stagger: 0.2,
         ease: 'power4.out'
     }, '-=0.8')
     .from('.hero-desc', {
         y: 30,
-        opacity: 0,
+        autoAlpha: 0,
         duration: 1,
         ease: 'power3.out'
     }, '-=0.6')
-    .from('.hero-cta a', {
-        y: 30,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: 'power3.out'
-    }, '-=0.8')
     .from('.scroll-indicator', {
         y: 50,
-        opacity: 0,
+        autoAlpha: 0,
         duration: 1,
         ease: 'power3.out'
     }, '-=0.5');
@@ -110,7 +96,7 @@ gsap.from('.about-text > *', {
     ease: 'power3.out'
 });
 
-gsap.from('.img-placeholder', {
+gsap.from('.profile-img-container', {
     scrollTrigger: {
         trigger: '.about',
         start: 'top 70%',
@@ -121,17 +107,50 @@ gsap.from('.img-placeholder', {
     ease: 'power4.out'
 });
 
-// Skills Section
+// Skills Section Animation
 gsap.from('.skill-card', {
     scrollTrigger: {
-        trigger: '.skills',
-        start: 'top 75%',
+        trigger: '.skills-grid',
+        start: 'top 85%',
     },
-    y: 50,
+    y: 100,
     opacity: 0,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: 'power3.out'
+    duration: 1,
+    stagger: 0.15,
+    ease: 'power4.out'
+});
+
+// 3D Tilt Effect for Skills
+const skillCards = document.querySelectorAll('.skill-card');
+
+skillCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -10; // Max rotation deg
+        const rotateY = ((x - centerX) / centerX) * 10;
+
+        gsap.to(card, {
+            rotateX: rotateX,
+            rotateY: rotateY,
+            duration: 0.1,
+            ease: 'power1.out'
+        });
+    });
+
+    card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+            rotateX: 0,
+            rotateY: 0,
+            duration: 0.5,
+            ease: 'elastic.out(1, 0.5)'
+        });
+    });
 });
 
 // Projects Section

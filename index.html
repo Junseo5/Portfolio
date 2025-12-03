@@ -17,24 +17,15 @@
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- RemixIcon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
     <header class="header">
-        <div class="logo">JUNSEO.</div>
-        <nav class="nav">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </nav>
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-        </div>
+        <a href="#home" class="logo">JUNSEO.</a>
     </header>
 
     <main>
@@ -87,14 +78,16 @@
                                 <span class="stat-label">Years Coding</span>
                             </div>
                             <div class="stat-item">
-                                <span class="stat-num">10+</span>
+                                <span class="stat-num">3+</span>
                                 <span class="stat-label">Projects</span>
                             </div>
                         </div>
                     </div>
                     <div class="about-image">
-                        <!-- Placeholder for profile image -->
-                        <div class="img-placeholder"></div>
+                        <div class="profile-img-container">
+                            <img src="https://drive.google.com/thumbnail?id=1REucuoTbdpLHWUvpOQSUaWS-VGYXNOTA&sz=w1000" alt="Song Junseo" class="profile-img" referrerpolicy="no-referrer">
+                            <div class="img-overlay"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,22 +101,22 @@
                 </div>
                 <div class="skills-grid">
                     <div class="skill-card">
-                        <div class="skill-icon">🐍</div>
+                        <div class="skill-icon"><i class="ri-code-s-slash-line"></i></div>
                         <h3>Python Ecosystem</h3>
                         <p>Django, FastAPI, PyTorch. Building scalable backends and AI integrations.</p>
                     </div>
                     <div class="skill-card">
-                        <div class="skill-icon">🤖</div>
+                        <div class="skill-icon"><i class="ri-brain-line"></i></div>
                         <h3>AI & RAG</h3>
                         <p>Implementing Retrieval-Augmented Generation for intelligent chatbots and services.</p>
                     </div>
                     <div class="skill-card">
-                        <div class="skill-icon">🚁</div>
+                        <div class="skill-icon"><i class="ri-plane-line"></i></div>
                         <h3>Drone Tech</h3>
                         <p>Certified Ultralight Vehicle Pilot. Experience in drone construction and RF communication.</p>
                     </div>
                     <div class="skill-card">
-                        <div class="skill-icon">☁️</div>
+                        <div class="skill-icon"><i class="ri-server-line"></i></div>
                         <h3>DevOps & Cloud</h3>
                         <p>Linux server management, Docker, and cloud deployment strategies.</p>
                     </div>
@@ -184,26 +177,6 @@
                     <!-- Project 3 -->
                     <article class="project-item">
                         <div class="project-content">
-                            <h3 class="project-title">Industrial Drone Control</h3>
-                            <p class="project-desc">
-                                Competed in the Industrial Drone Control Skills Competition. 
-                                Specialized in assembling industrial drones and programming autonomous flight missions using Pixhawk flight controllers and Mission Planner.
-                            </p>
-                            <ul class="project-tags">
-                                <li>Pixhawk</li>
-                                <li>Mission Planner</li>
-                                <li>Autonomous Flight</li>
-                                <li>Drone Assembly</li>
-                            </ul>
-                        </div>
-                        <div class="project-visual">
-                            <div class="visual-placeholder" style="background: linear-gradient(45deg, #FF5733, #C70039);"></div>
-                        </div>
-                    </article>
-
-                    <!-- Project 5 -->
-                    <article class="project-item">
-                        <div class="project-content">
                             <h3 class="project-title">SelF – Agricultural E-commerce</h3>
                             <p class="project-desc">
                                 E-commerce platform for agricultural products. Implemented the entire Django REST API backend (Members, Products, Orders). 
@@ -223,6 +196,26 @@
                     </article>
 
                     <!-- Project 4 -->
+                    <article class="project-item">
+                        <div class="project-content">
+                            <h3 class="project-title">Industrial Drone Control</h3>
+                            <p class="project-desc">
+                                Competed in the Industrial Drone Control Skills Competition. 
+                                Specialized in assembling industrial drones and programming autonomous flight missions using Pixhawk flight controllers and Mission Planner.
+                            </p>
+                            <ul class="project-tags">
+                                <li>Pixhawk</li>
+                                <li>Mission Planner</li>
+                                <li>Autonomous Flight</li>
+                                <li>Drone Assembly</li>
+                            </ul>
+                        </div>
+                        <div class="project-visual">
+                            <div class="visual-placeholder" style="background: linear-gradient(45deg, #FF5733, #C70039);"></div>
+                        </div>
+                    </article>
+
+                    <!-- Project 5 -->
                     <article class="project-item">
                         <div class="project-content">
                             <h3 class="project-title">Mine X Network</h3>
