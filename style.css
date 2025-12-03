@@ -108,6 +108,42 @@ ul {
     text-decoration: none;
 }
 
+.lang-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.lang-btn.active, .lang-btn:hover {
+    color: var(--text-primary);
+}
+
+.lang-toggle .divider {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
 .nav {
     display: flex;
     gap: 2rem;

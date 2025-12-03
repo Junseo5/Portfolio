@@ -27,23 +27,30 @@
     <header class="header">
         <a href="#home" class="logo">JUNSEO.</a>
     </header>
+    
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ko">KO</button>
+        <span class="divider">|</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+    </div>
 
     <main>
         <section id="home" class="hero">
             <div class="hero-content">
-                <h2 class="hero-subtitle">Backend Developer & Drone Specialist</h2>
+                <h2 class="hero-subtitle" data-i18n="hero.subtitle">Backend Developer & Drone Specialist</h2>
                 <h1 class="hero-title">
-                    <span class="line">Building the</span>
-                    <span class="line">Future with</span>
-                    <span class="line text-gradient">Code & Flight.</span>
+                    <span class="line" data-i18n="hero.title1">Building the</span>
+                    <span class="line" data-i18n="hero.title2">Future with</span>
+                    <span class="line text-gradient" data-i18n="hero.title3">Code & Flight.</span>
                 </h1>
-                <p class="hero-desc">
+                <p class="hero-desc" data-i18n="hero.desc">
                     Creating robust backend systems and exploring the skies with drone technology.
                     Based in Seoul, KR.
                 </p>
                 <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">View Work</a>
-                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero.viewWork">View Work</a>
+                    <a href="#contact" class="btn btn-outline" data-i18n="hero.contactMe">Contact Me</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -51,7 +58,7 @@
                 <!-- Abstract 3D shape or tech visual could go here -->
             </div>
             <div class="scroll-indicator">
-                <span>Scroll</span>
+                <span data-i18n="hero.scroll">Scroll</span>
                 <div class="line"></div>
             </div>
         </section>
@@ -60,14 +67,14 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">01</span>
-                    <h2 class="section-title">About Me</h2>
+                    <h2 class="section-title" data-i18n="about.title">About Me</h2>
                 </div>
                 <div class="about-grid">
                     <div class="about-text">
-                        <p class="lead">
+                        <p class="lead" data-i18n="about.lead">
                             I am Song Junseo, a passionate developer with a unique blend of skills in software engineering and drone technology.
                         </p>
-                        <p>
+                        <p data-i18n="about.desc">
                             Graduated from Seoul Robot High School, I have honed my skills in Python, Django, and FastAPI. 
                             My journey isn't just about code; it's about solving real-world problems, whether it's creating 
                             efficient SaaS platforms like the Discord R Chatbot or piloting unmanned multi-copters.
@@ -75,11 +82,11 @@
                         <div class="about-stats">
                             <div class="stat-item">
                                 <span class="stat-num">1+</span>
-                                <span class="stat-label">Years Coding</span>
+                                <span class="stat-label" data-i18n="about.years">Years Coding</span>
                             </div>
                             <div class="stat-item">
                                 <span class="stat-num">3+</span>
-                                <span class="stat-label">Projects</span>
+                                <span class="stat-label" data-i18n="about.projects">Projects</span>
                             </div>
                         </div>
                     </div>
@@ -97,28 +104,28 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">02</span>
-                    <h2 class="section-title">Expertise</h2>
+                    <h2 class="section-title" data-i18n="skills.title">Expertise</h2>
                 </div>
                 <div class="skills-grid">
                     <div class="skill-card">
                         <div class="skill-icon"><i class="ri-code-s-slash-line"></i></div>
-                        <h3>Python Ecosystem</h3>
-                        <p>Django, FastAPI, PyTorch. Building scalable backends and AI integrations.</p>
+                        <h3 data-i18n="skills.python.title">Python Ecosystem</h3>
+                        <p data-i18n="skills.python.desc">Django, FastAPI, PyTorch. Building scalable backends and AI integrations.</p>
                     </div>
                     <div class="skill-card">
                         <div class="skill-icon"><i class="ri-brain-line"></i></div>
-                        <h3>AI & RAG</h3>
-                        <p>Implementing Retrieval-Augmented Generation for intelligent chatbots and services.</p>
+                        <h3 data-i18n="skills.ai.title">AI & RAG</h3>
+                        <p data-i18n="skills.ai.desc">Implementing Retrieval-Augmented Generation for intelligent chatbots and services.</p>
                     </div>
                     <div class="skill-card">
                         <div class="skill-icon"><i class="ri-plane-line"></i></div>
-                        <h3>Drone Tech</h3>
-                        <p>Certified Ultralight Vehicle Pilot. Experience in drone construction and RF communication.</p>
+                        <h3 data-i18n="skills.drone.title">Drone Tech</h3>
+                        <p data-i18n="skills.drone.desc">Certified Ultralight Vehicle Pilot. Experience in drone construction and RF communication.</p>
                     </div>
                     <div class="skill-card">
                         <div class="skill-icon"><i class="ri-server-line"></i></div>
-                        <h3>DevOps & Cloud</h3>
-                        <p>Linux server management, Docker, and cloud deployment strategies.</p>
+                        <h3 data-i18n="skills.devops.title">DevOps & Cloud</h3>
+                        <p data-i18n="skills.devops.desc">Linux server management, Docker, and cloud deployment strategies.</p>
                     </div>
                 </div>
             </div>
@@ -128,14 +135,14 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">03</span>
-                    <h2 class="section-title">Selected Works</h2>
+                    <h2 class="section-title" data-i18n="projects.title">Selected Works</h2>
                 </div>
                 <div class="project-list">
                     <!-- Project 1 -->
                     <article class="project-item">
                         <div class="project-content">
-                            <h3 class="project-title">Discord R Chatbot</h3>
-                            <p class="project-desc">
+                            <h3 class="project-title" data-i18n="project.discord.title">Discord R Chatbot</h3>
+                            <p class="project-desc" data-i18n="project.discord.desc">
                                 A SaaS platform for game community management. Features real-time Q&A using RAG technology, 
                                 automating support for server administrators.
                             </p>
@@ -146,7 +153,7 @@
                                 <li>Python</li>
                             </ul>
                             <div class="project-links">
-                                <a href="https://rchat.kr" target="_blank" class="link-arrow">Visit Site</a>
+                                <a href="https://rchat.kr" target="_blank" class="link-arrow" data-i18n="project.visit">Visit Site</a>
                             </div>
                         </div>
                         <div class="project-visual">
@@ -157,8 +164,8 @@
                     <!-- Project 2 -->
                     <article class="project-item">
                         <div class="project-content">
-                            <h3 class="project-title">SSAFY AI Challenge – VQA</h3>
-                            <p class="project-desc">
+                            <h3 class="project-title" data-i18n="project.ssafy.title">SSAFY AI Challenge – VQA</h3>
+                            <p class="project-desc" data-i18n="project.ssafy.desc">
                                 Improved VQA performance from baseline 0.76028 to 0.94187 using Qwen2.5-VL. 
                                 Performed data analysis, LoRA fine-tuning, TTA, and systematic experiment tracking on AWS G5/A100 infrastructure.
                             </p>
@@ -177,8 +184,8 @@
                     <!-- Project 3 -->
                     <article class="project-item">
                         <div class="project-content">
-                            <h3 class="project-title">SelF – Agricultural E-commerce</h3>
-                            <p class="project-desc">
+                            <h3 class="project-title" data-i18n="project.self.title">SelF – Agricultural E-commerce</h3>
+                            <p class="project-desc" data-i18n="project.self.desc">
                                 E-commerce platform for agricultural products. Implemented the entire Django REST API backend (Members, Products, Orders). 
                                 Designed user behavior logging (Views, Cart, Wishlist, Purchase) and implemented recommendation algorithms. 
                                 Collaborated on Frontend design and layout discussions.
@@ -198,8 +205,8 @@
                     <!-- Project 4 -->
                     <article class="project-item">
                         <div class="project-content">
-                            <h3 class="project-title">Industrial Drone Control</h3>
-                            <p class="project-desc">
+                            <h3 class="project-title" data-i18n="project.drone.title">Industrial Drone Control</h3>
+                            <p class="project-desc" data-i18n="project.drone.desc">
                                 Competed in the Industrial Drone Control Skills Competition. 
                                 Specialized in assembling industrial drones and programming autonomous flight missions using Pixhawk flight controllers and Mission Planner.
                             </p>
@@ -218,8 +225,8 @@
                     <!-- Project 5 -->
                     <article class="project-item">
                         <div class="project-content">
-                            <h3 class="project-title">Mine X Network</h3>
-                            <p class="project-desc">
+                            <h3 class="project-title" data-i18n="project.minex.title">Mine X Network</h3>
+                            <p class="project-desc" data-i18n="project.minex.desc">
                                 Operated a Minecraft server (Oct 2024 - May 2025) with 1,000+ cumulative players. 
                                 Focused on server optimization using Ubuntu Linux and proxy splitting. Implemented robust security measures including Cloudflare Spectrum and origin/proxy separation to defend against DDoS attacks. Developed custom plugins using Java.
                             </p>
@@ -242,8 +249,8 @@
             <div class="container">
                 <div class="contact-wrapper">
                     <div class="contact-content">
-                        <h2 class="contact-title">Let's Work Together</h2>
-                        <p class="contact-text">
+                        <h2 class="contact-title" data-i18n="contact.title">Let's Work Together</h2>
+                        <p class="contact-text" data-i18n="contact.desc">
                             Interested in collaborating or have a project in mind? 
                             I'm always open to new challenges in backend development and drone tech.
                         </p>
@@ -261,8 +268,8 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 Song Junseo. All rights reserved.</p>
-                <p>Designed & Built with 💻 & ☕</p>
+                <p data-i18n="footer.copyright">&copy; 2025 Song Junseo. All rights reserved.</p>
+                <p data-i18n="footer.credit">Designed & Built with 💻 & ☕</p>
             </div>
         </div>
     </footer>
