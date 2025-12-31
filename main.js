@@ -170,34 +170,60 @@ if (langParam && translations[langParam]) {
     updateLanguage(defaultLang);
 }
 
-// Custom Cursor
-const cursor = document.querySelector('.cursor');
-const follower = document.querySelector('.cursor-follower');
-const links = document.querySelectorAll('a, button, .project-item');
+// 커스텀 커서 - 마우스 디바이스에서만 활성화
+const isTouchDevice = () => {
+    return (('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0));
+};
 
-document.addEventListener('mousemove', (e) => {
-    gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1
-    });
-    gsap.to(follower, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.3
-    });
-});
+const hasFinePonter = () => {
+    return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+};
 
-links.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-        gsap.to(cursor, { scale: 0, duration: 0.2 });
-        gsap.to(follower, { scale: 2, backgroundColor: 'rgba(255, 255, 255, 0.1)', duration: 0.2 });
+// 커스텀 커서 초기화
+const initCustomCursor = () => {
+    // 터치 디바이스거나 마우스가 없으면 커스텀 커서 비활성화
+    if (isTouchDevice() && !hasFinePonter()) {
+        return;
+    }
+
+    const cursor = document.querySelector('.cursor');
+    const follower = document.querySelector('.cursor-follower');
+
+    if (!cursor || !follower) return;
+
+    // body에 커스텀 커서 활성화 클래스 추가
+    document.body.classList.add('custom-cursor-enabled');
+
+    const links = document.querySelectorAll('a, button, .project-item, .skill-card');
+
+    document.addEventListener('mousemove', (e) => {
+        gsap.to(cursor, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.1
+        });
+        gsap.to(follower, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.3
+        });
     });
-    link.addEventListener('mouseleave', () => {
-        gsap.to(cursor, { scale: 1, duration: 0.2 });
-        gsap.to(follower, { scale: 1, backgroundColor: 'transparent', duration: 0.2 });
+
+    links.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            gsap.to(cursor, { scale: 0, duration: 0.2 });
+            gsap.to(follower, { scale: 2, backgroundColor: 'rgba(255, 255, 255, 0.1)', duration: 0.2 });
+        });
+        link.addEventListener('mouseleave', () => {
+            gsap.to(cursor, { scale: 1, duration: 0.2 });
+            gsap.to(follower, { scale: 1, backgroundColor: 'transparent', duration: 0.2 });
+        });
     });
-});
+};
+
+initCustomCursor();
 
 // Hero Animations
 const heroTimeline = gsap.timeline();
@@ -292,38 +318,48 @@ gsap.from('.skill-card', {
     immediateRender: false
 });
 
-// 3D Tilt Effect for Skills
-const skillCards = document.querySelectorAll('.skill-card');
+// 3D 틸트 효과 - 마우스 디바이스에서만 활성화
+const init3DTiltEffect = () => {
+    // 터치 디바이스에서는 3D 효과 비활성화
+    if (isTouchDevice() && !hasFinePonter()) {
+        return;
+    }
 
-skillCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = ((y - centerY) / centerY) * -10; // Max rotation deg
-        const rotateY = ((x - centerX) / centerX) * 10;
+    const skillCards = document.querySelectorAll('.skill-card');
 
-        gsap.to(card, {
-            rotateX: rotateX,
-            rotateY: rotateY,
-            duration: 0.1,
-            ease: 'power1.out'
+    skillCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // 최대 회전 각도를 8도로 제한 (더 부드러운 효과)
+            const rotateX = ((y - centerY) / centerY) * -8;
+            const rotateY = ((x - centerX) / centerX) * 8;
+
+            gsap.to(card, {
+                rotateX: rotateX,
+                rotateY: rotateY,
+                duration: 0.1,
+                ease: 'power1.out'
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                rotateX: 0,
+                rotateY: 0,
+                duration: 0.5,
+                ease: 'elastic.out(1, 0.5)'
+            });
         });
     });
+};
 
-    card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-            rotateX: 0,
-            rotateY: 0,
-            duration: 0.5,
-            ease: 'elastic.out(1, 0.5)'
-        });
-    });
-});
+init3DTiltEffect();
 
 // Projects Section
 const projects = document.querySelectorAll('.project-item');
