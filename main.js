@@ -5,11 +5,11 @@ gsap.registerPlugin(ScrollTrigger);
 const translations = {
     en: {
         hero: {
-            subtitle: "Backend Developer & Drone Specialist",
+            subtitle: "Backend Developer & AI Engineer",
             title1: "I build it",
             title2: "from scratch",
             title3: "and ship it.",
-            desc: "I build backend systems and AI services with Python, and I have 5 years of hands-on experience building and flying drones.",
+            desc: "Building robust backend systems and AI-powered services with Python. Based in Seoul, KR.",
             viewWork: "View Projects",
             contactMe: "Get in Touch",
             scroll: "Scroll"
@@ -25,7 +25,6 @@ const translations = {
             title: "Tech Stack",
             python: { title: "Python Backend", desc: "Designing and building REST APIs with Django and FastAPI. Experience training AI models with PyTorch." },
             ai: { title: "AI & RAG", desc: "Building RAG systems and optimizing retrieval quality. Experience applying techniques such as TTA, K-Fold, EMA, and more." },
-            drone: { title: "Drones", desc: "Five years of building and flying drones. Licensed ultralight vehicle pilot and certified flight examiner." },
             devops: { title: "Servers & Infrastructure", desc: "Building and operating Linux servers. Experience deploying services with Nginx and Cloudflare." }
         },
         projects: {
@@ -44,10 +43,6 @@ const translations = {
                 title: "SelF – Agricultural E-commerce",
                 desc: "E-commerce platform for agricultural products. Implemented the entire Django REST API backend (members, products, orders). Designed and implemented recommendation algorithms based on user behavior logs."
             },
-            drone: {
-                title: "Industrial Drone Control",
-                desc: "Participated in an industrial drone control skills competition. Assembled industrial drones and programmed autonomous flight missions using Pixhawk flight controllers and Mission Planner."
-            },
             minex: {
                 title: "Mine X Network",
                 desc: "Operated a Minecraft server for 2 years with 1,000+ cumulative users. Built and ran on-premise servers with Ubuntu Linux, configured DDoS protection with Cloudflare Spectrum, and developed custom plugins in Java."
@@ -65,11 +60,11 @@ const translations = {
     },
     ko: {
         hero: {
-            subtitle: "백엔드 개발자 & 드론 전문가",
+            subtitle: "백엔드 개발자 & AI 엔지니어",
             title1: "직접 만들고",
             title2: "끝까지",
             title3: "완성합니다.",
-            desc: "Python 기반 백엔드 시스템 구축과 AI 서비스 개발을 합니다. 5년간 드론을 직접 제작하고 비행한 경험이 있습니다.",
+            desc: "Python 기반 백엔드 시스템 구축과 AI 서비스 개발을 합니다. 서울에서 활동합니다.",
             viewWork: "프로젝트 보기",
             contactMe: "연락하기",
             scroll: "스크롤"
@@ -85,7 +80,6 @@ const translations = {
             title: "기술 스택",
             python: { title: "Python 백엔드", desc: "Django, FastAPI로 REST API 설계 및 구축. PyTorch 기반 AI 모델 학습 경험." },
             ai: { title: "AI & RAG", desc: "RAG 시스템 구축 및 검색 정확도 최적화. TTA, K-Fold, EMA 등 학습 기법 적용 경험." },
-            drone: { title: "드론", desc: "5년간 드론 제작 및 비행. 초경량비행장치 조종자 자격증, 실기평가자 자격 보유." },
             devops: { title: "서버 & 인프라", desc: "Linux 서버 구축 및 운영. Nginx, Cloudflare 활용한 서비스 배포 경험." }
         },
         projects: {
@@ -103,10 +97,6 @@ const translations = {
             self: {
                 title: "SelF – 농산물 이커머스",
                 desc: "Django REST API 백엔드 전체 구현 (회원, 상품, 주문). 사용자 행동 로그 기반 추천 알고리즘을 설계하고 구현했습니다."
-            },
-            drone: {
-                title: "산업용 드론 제어",
-                desc: "기능경기대회 참가. 산업용 드론 조립 및 Pixhawk, Mission Planner를 활용한 자율 비행 미션 프로그래밍을 수행했습니다."
             },
             minex: {
                 title: "Mine X 네트워크",
