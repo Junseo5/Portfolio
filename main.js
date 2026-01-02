@@ -1,98 +1,161 @@
 // Register ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// Translations
+// ========================================
+// 테마 시스템
+// ========================================
+
+const initTheme = () => {
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    // 저장된 테마 또는 시스템 설정 확인
+    const getPreferredTheme = () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) return savedTheme;
+
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    };
+
+    // 테마 적용
+    const setTheme = (theme) => {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+
+        // meta theme-color 업데이트
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0b' : '#fafafa');
+        }
+    };
+
+    // 초기 테마 설정
+    setTheme(getPreferredTheme());
+
+    // 토글 버튼 클릭 이벤트
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+    }
+
+    // 시스템 테마 변경 감지
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            setTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+};
+
+initTheme();
+
+// ========================================
+// 다국어 시스템
+// ========================================
+
 const translations = {
     en: {
         hero: {
-            subtitle: "Backend Developer & AI Engineer",
-            title1: "I build it",
-            title2: "from scratch",
-            title3: "and ship it.",
-            desc: "Building robust backend systems and AI-powered services with Python. Based in Seoul, KR.",
+            badge: "Open to Work",
+            greeting: "Hello,",
+            name: "I'm Junseo",
+            role: ".",
+            desc: "I build backend systems and AI-powered services with Python. I focus on shipping services that deliver real value to users.",
             viewWork: "View Projects",
-            contactMe: "Get in Touch",
-            scroll: "Scroll"
+            contact: "Contact Me"
         },
         about: {
-            title: "About",
+            label: "About",
+            title: "About Me",
             lead: "When I want to build something, I learn by diving in and doing it myself.",
-            desc: "I started coding because I wanted to run my own Minecraft server, and ended up operating a service used by over 1,000 players for two years. After completing an AI curriculum at SSAFY, I built a RAG-based Discord chatbot SaaS as a solo developer, improving search accuracy from around 40% to 80% while keeping latency low. I focus not just on writing code, but on shipping services that deliver real value to users.",
-            years: "Years Coding",
-            projects: "Projects"
+            desc: "I started coding because I wanted to run my own Minecraft server, and ended up operating a service used by over 1,000 players for two years. After completing an AI curriculum at SSAFY, I built a RAG-based Discord chatbot SaaS as a solo developer, improving search accuracy from around 40% to 80%.",
+            desc2: "I focus not just on writing code, but on shipping services that deliver real value to users.",
+            years: "Years",
+            projects: "Projects",
+            users: "Users"
         },
         skills: {
+            label: "Skills",
             title: "Tech Stack",
             python: { title: "Python Backend", desc: "Designing and building REST APIs with Django and FastAPI. Experience training AI models with PyTorch." },
-            ai: { title: "AI & RAG", desc: "Building RAG systems and optimizing retrieval quality. Experience applying techniques such as TTA, K-Fold, EMA, and more." },
-            devops: { title: "Servers & Infrastructure", desc: "Building and operating Linux servers. Experience deploying services with Nginx and Cloudflare." }
+            ai: { title: "AI & RAG", desc: "Building RAG systems and optimizing retrieval quality. Experience applying techniques such as TTA, K-Fold, EMA." },
+            devops: { title: "Servers & Infra", desc: "Building and operating Linux servers. Experience deploying services with Nginx and Cloudflare." }
         },
         projects: {
-            title: "Projects"
+            label: "Projects",
+            title: "Projects",
+            desc: "Projects I designed and developed."
         },
         project: {
             discord: {
                 title: "Discord R Chatbot",
-                desc: "An AI chatbot SaaS for game communities. Built a RAG-based real-time Q&A system and improved search accuracy from about 40% to 80%. Implemented subscription plans, API key issuing, two-factor authentication, and other production features as a solo developer."
+                desc: "AI chatbot SaaS for game communities. Built a RAG-based real-time Q&A system and improved search accuracy from 40% to 80%."
             },
             ssafy: {
                 title: "SSAFY AI Challenge – VQA",
-                desc: "Improved VQA accuracy with Qwen2.5-VL from 0.76 to 0.94. Ran experiments with TTA, K-Fold, AMP, EMA, SWA, and performed external data exploration and preprocessing."
+                desc: "Improved VQA accuracy with Qwen2.5-VL from 0.76 to 0.94. Ran experiments with TTA, K-Fold, EMA and various techniques."
             },
             self: {
                 title: "SelF – Agricultural E-commerce",
-                desc: "E-commerce platform for agricultural products. Implemented the entire Django REST API backend (members, products, orders). Designed and implemented recommendation algorithms based on user behavior logs."
+                desc: "Implemented Django REST API backend (members, products, orders). Designed and implemented recommendation algorithms based on user behavior logs."
             },
             minex: {
                 title: "Mine X Network",
-                desc: "Operated a Minecraft server for 2 years with 1,000+ cumulative users. Built and ran on-premise servers with Ubuntu Linux, configured DDoS protection with Cloudflare Spectrum, and developed custom plugins in Java."
+                desc: "Operated a Minecraft server for 2 years (1,000+ users). Ran on Ubuntu Linux with Cloudflare Spectrum for DDoS protection."
             },
             visit: "Visit Site"
         },
         contact: {
-            title: "Contact",
+            title: "Get in Touch",
             desc: "If you'd like to collaborate or have any questions, feel free to reach out."
         },
         footer: {
             copyright: "© 2025 Song Junseo. All rights reserved.",
-            credit: "Designed & Built with 💻 & ☕"
+            made: "Made with code & coffee"
         }
     },
     ko: {
         hero: {
-            subtitle: "백엔드 개발자 & AI 엔지니어",
-            title1: "직접 만들고",
-            title2: "끝까지",
-            title3: "완성합니다.",
-            desc: "Python 기반 백엔드 시스템 구축과 AI 서비스 개발을 합니다. 서울에서 활동합니다.",
+            badge: "구직 중",
+            greeting: "안녕하세요,",
+            name: "송준서",
+            role: "입니다.",
+            desc: "Python 기반 백엔드 시스템 구축과 AI 서비스 개발을 합니다. 실제 사용자에게 가치를 전달하는 서비스를 만드는 데 집중합니다.",
             viewWork: "프로젝트 보기",
-            contactMe: "연락하기",
-            scroll: "스크롤"
+            contact: "연락하기"
         },
         about: {
+            label: "About",
             title: "소개",
             lead: "만들고 싶은 게 생기면 직접 부딪치며 배웁니다.",
-            desc: "마인크래프트 서버를 만들고 싶다는 생각으로 개발을 시작해 1,000명이 이용하는 서비스를 2년간 운영했습니다. SSAFY에서 AI 교육을 이수한 후, RAG 기반 Discord 챗봇 SaaS를 1인 개발하며 검색 속도는 유지하되 검색 정확도를 40%에서 80%까지 개선했습니다. 코드를 작성하는 것을 넘어, 실제 사용자에게 가치를 전달하는 서비스를 만드는 데 집중합니다.",
-            years: "개발 경력",
-            projects: "프로젝트"
+            desc: "마인크래프트 서버를 만들고 싶다는 생각으로 개발을 시작해 1,000명이 이용하는 서비스를 2년간 운영했습니다. SSAFY에서 AI 교육을 이수한 후, RAG 기반 Discord 챗봇 SaaS를 1인 개발하며 검색 정확도를 40%에서 80%까지 개선했습니다.",
+            desc2: "코드를 작성하는 것을 넘어, 실제 사용자에게 가치를 전달하는 서비스를 만드는 데 집중합니다.",
+            years: "경력",
+            projects: "프로젝트",
+            users: "유저"
         },
         skills: {
+            label: "Skills",
             title: "기술 스택",
-            python: { title: "Python 백엔드", desc: "Django, FastAPI로 REST API 설계 및 구축. PyTorch 기반 AI 모델 학습 경험." },
+            python: { title: "Python Backend", desc: "Django, FastAPI로 REST API 설계 및 구축. PyTorch 기반 AI 모델 학습 경험." },
             ai: { title: "AI & RAG", desc: "RAG 시스템 구축 및 검색 정확도 최적화. TTA, K-Fold, EMA 등 학습 기법 적용 경험." },
-            devops: { title: "서버 & 인프라", desc: "Linux 서버 구축 및 운영. Nginx, Cloudflare 활용한 서비스 배포 경험." }
+            devops: { title: "Servers & Infra", desc: "Linux 서버 구축 및 운영. Nginx, Cloudflare 활용한 서비스 배포 경험." }
         },
         projects: {
-            title: "프로젝트"
+            label: "Projects",
+            title: "프로젝트",
+            desc: "직접 기획하고 개발한 프로젝트들입니다."
         },
         project: {
             discord: {
                 title: "Discord R 챗봇",
-                desc: "게임 커뮤니티를 위한 AI 챗봇 SaaS. RAG 기반 실시간 Q&A 시스템을 구축하고, 검색 정확도를 40%에서 80%까지 개선했습니다. 구독 시스템, API 키 발급, 2단계 인증 등 상용 서비스 기능을 1인 개발했습니다."
+                desc: "게임 커뮤니티를 위한 AI 챗봇 SaaS. RAG 기반 실시간 Q&A 시스템을 구축하고, 검색 정확도를 40%에서 80%까지 개선했습니다."
             },
             ssafy: {
                 title: "SSAFY AI 챌린지 – VQA",
-                desc: "Qwen2.5-VL 모델로 VQA 정확도를 0.76에서 0.94로 향상시켰습니다. TTA, K-Fold, AMP, EMA, SWA 등 다양한 기법을 직접 실험하고, 외부 데이터 탐색 및 가공을 수행했습니다."
+                desc: "Qwen2.5-VL 모델로 VQA 정확도를 0.76에서 0.94로 향상시켰습니다. TTA, K-Fold, EMA 등 다양한 기법을 실험했습니다."
             },
             self: {
                 title: "SelF – 농산물 이커머스",
@@ -100,7 +163,7 @@ const translations = {
             },
             minex: {
                 title: "Mine X 네트워크",
-                desc: "마인크래프트 서버 운영 (2년, 누적 유저 1,000+). 사무실에 직접 서버를 구축하고 Ubuntu Linux로 운영했습니다. Cloudflare Spectrum으로 DDoS 방어 환경을 구성하고, Java로 커스텀 플러그인을 개발했습니다."
+                desc: "마인크래프트 서버 운영 (2년, 누적 유저 1,000+). Ubuntu Linux로 운영하고 Cloudflare Spectrum으로 DDoS 방어 환경을 구성했습니다."
             },
             visit: "사이트 방문"
         },
@@ -110,12 +173,12 @@ const translations = {
         },
         footer: {
             copyright: "© 2025 Song Junseo. All rights reserved.",
-            credit: "Designed & Built with 💻 & ☕"
+            made: "Made with code & coffee"
         }
     }
 };
 
-// Language Logic
+// 언어 변경 함수
 function updateLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
@@ -129,16 +192,16 @@ function updateLanguage(lang) {
         }
     });
 
-    // Update buttons state
+    // 버튼 상태 업데이트
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
 
-    // Save preference
+    // 설정 저장
     localStorage.setItem('preferredLanguage', lang);
 }
 
-// Event Listeners
+// 언어 토글 이벤트
 document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const lang = btn.getAttribute('data-lang');
@@ -146,11 +209,11 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
     });
 });
 
-// Initialize
+// 초기 언어 설정
 const urlParams = new URLSearchParams(window.location.search);
 const langParam = urlParams.get('lang');
 const savedLang = localStorage.getItem('preferredLanguage');
-const defaultLang = 'ko'; // Default to Korean as requested
+const defaultLang = 'ko';
 
 if (langParam && translations[langParam]) {
     updateLanguage(langParam);
@@ -160,21 +223,22 @@ if (langParam && translations[langParam]) {
     updateLanguage(defaultLang);
 }
 
-// 커스텀 커서 - 마우스 디바이스에서만 활성화
+// ========================================
+// 커스텀 커서
+// ========================================
+
 const isTouchDevice = () => {
     return (('ontouchstart' in window) ||
         (navigator.maxTouchPoints > 0) ||
         (navigator.msMaxTouchPoints > 0));
 };
 
-const hasFinePonter = () => {
+const hasFinePointer = () => {
     return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 };
 
-// 커스텀 커서 초기화
 const initCustomCursor = () => {
-    // 터치 디바이스거나 마우스가 없으면 커스텀 커서 비활성화
-    if (isTouchDevice() && !hasFinePonter()) {
+    if (isTouchDevice() && !hasFinePointer()) {
         return;
     }
 
@@ -183,10 +247,9 @@ const initCustomCursor = () => {
 
     if (!cursor || !follower) return;
 
-    // body에 커스텀 커서 활성화 클래스 추가
     document.body.classList.add('custom-cursor-enabled');
 
-    const links = document.querySelectorAll('a, button, .project-item, .skill-card');
+    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .stat-card');
 
     document.addEventListener('mousemove', (e) => {
         gsap.to(cursor, {
@@ -197,209 +260,137 @@ const initCustomCursor = () => {
         gsap.to(follower, {
             x: e.clientX,
             y: e.clientY,
-            duration: 0.3
+            duration: 0.25
         });
     });
 
-    links.forEach(link => {
-        link.addEventListener('mouseenter', () => {
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
             gsap.to(cursor, { scale: 0, duration: 0.2 });
-            gsap.to(follower, { scale: 2, backgroundColor: 'rgba(255, 255, 255, 0.1)', duration: 0.2 });
+            gsap.to(follower, { scale: 1.5, opacity: 0.3, duration: 0.2 });
         });
-        link.addEventListener('mouseleave', () => {
+        el.addEventListener('mouseleave', () => {
             gsap.to(cursor, { scale: 1, duration: 0.2 });
-            gsap.to(follower, { scale: 1, backgroundColor: 'transparent', duration: 0.2 });
+            gsap.to(follower, { scale: 1, opacity: 0.6, duration: 0.2 });
         });
     });
 };
 
 initCustomCursor();
 
-// Hero Animations
-const heroTimeline = gsap.timeline();
+// ========================================
+// 애니메이션
+// ========================================
+
+// 히어로 애니메이션
+const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
 heroTimeline
-    .from('.logo', {
-        y: -50,
-        autoAlpha: 0,
-        duration: 1,
-        ease: 'power4.out'
-    })
-    .from('.hero-subtitle', {
-        y: 30,
-        autoAlpha: 0,
-        duration: 1,
-        ease: 'power3.out'
-    }, '-=0.5')
-    .from('.hero-title .line', {
-        y: 100,
-        autoAlpha: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: 'power4.out'
-    }, '-=0.8')
-    .from('.hero-desc', {
-        y: 30,
-        autoAlpha: 0,
-        duration: 1,
-        ease: 'power3.out'
-    }, '-=0.6')
-    .from('.scroll-indicator', {
-        y: 50,
-        autoAlpha: 0,
-        duration: 1,
-        ease: 'power3.out'
-    }, '-=0.5');
+    .from('.logo', { y: -30, opacity: 0, duration: 0.8 })
+    .from('.header-right', { y: -30, opacity: 0, duration: 0.8 }, '-=0.6')
+    .from('.hero-badge', { y: 20, opacity: 0, duration: 0.6 }, '-=0.4')
+    .from('.hero-title', { y: 40, opacity: 0, duration: 0.8 }, '-=0.4')
+    .from('.hero-desc', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
+    .from('.hero-cta', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
+    .from('.hero-info', { y: 20, opacity: 0, duration: 0.6 }, '-=0.4');
 
-// Scroll Animations
+// 섹션 애니메이션
 const sections = document.querySelectorAll('.section');
 
 sections.forEach(section => {
-    gsap.from(section.querySelector('.section-header'), {
-        scrollTrigger: {
-            trigger: section,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-        },
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out'
-    });
+    const header = section.querySelector('.section-header');
+    if (header) {
+        gsap.from(header, {
+            scrollTrigger: {
+                trigger: section,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+    }
 });
 
-// About Section
+// About 섹션
 gsap.from('.about-text > *', {
     scrollTrigger: {
-        trigger: '.about',
-        start: 'top 70%',
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.2,
-    ease: 'power3.out'
-});
-
-gsap.from('.profile-img-container', {
-    scrollTrigger: {
-        trigger: '.about',
-        start: 'top 70%',
-    },
-    scale: 0.8,
-    opacity: 0,
-    duration: 1.5,
-    ease: 'power4.out'
-});
-
-// Skills Section Animation
-gsap.from('.skill-card', {
-    scrollTrigger: {
-        trigger: '.skills-grid',
-        start: 'top 85%',
-    },
-    y: 100,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.15,
-    ease: 'power4.out',
-    // Prevent first card from rendering in its "from" position
-    // when the page is refreshed mid-scroll.
-    immediateRender: false
-});
-
-// 3D 틸트 효과 - 마우스 디바이스에서만 활성화
-const init3DTiltEffect = () => {
-    // 터치 디바이스에서는 3D 효과 비활성화
-    if (isTouchDevice() && !hasFinePonter()) {
-        return;
-    }
-
-    const skillCards = document.querySelectorAll('.skill-card');
-
-    skillCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            // 최대 회전 각도를 8도로 제한 (더 부드러운 효과)
-            const rotateX = ((y - centerY) / centerY) * -8;
-            const rotateY = ((x - centerX) / centerX) * 8;
-
-            gsap.to(card, {
-                rotateX: rotateX,
-                rotateY: rotateY,
-                duration: 0.1,
-                ease: 'power1.out'
-            });
-        });
-
-        card.addEventListener('mouseleave', () => {
-            gsap.to(card, {
-                rotateX: 0,
-                rotateY: 0,
-                duration: 0.5,
-                ease: 'elastic.out(1, 0.5)'
-            });
-        });
-    });
-};
-
-init3DTiltEffect();
-
-// Projects Section
-const projects = document.querySelectorAll('.project-item');
-
-projects.forEach((project, index) => {
-    const direction = index % 2 === 0 ? -50 : 50;
-    
-    gsap.from(project.querySelector('.project-content'), {
-        scrollTrigger: {
-            trigger: project,
-            start: 'top 80%',
-        },
-        x: direction,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out'
-    });
-    
-    gsap.from(project.querySelector('.project-visual'), {
-        scrollTrigger: {
-            trigger: project,
-            start: 'top 80%',
-        },
-        scale: 0.9,
-        opacity: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        delay: 0.2
-    });
-});
-
-// Contact Section
-gsap.from('.contact-content > *', {
-    scrollTrigger: {
-        trigger: '.contact',
-        start: 'top 90%', // Trigger earlier
+        trigger: '.about-content',
+        start: 'top 75%'
     },
     y: 30,
     opacity: 0,
-    duration: 1,
-    stagger: 0.2,
+    duration: 0.7,
+    stagger: 0.15,
     ease: 'power3.out'
 });
 
-// Smooth Scroll for Anchor Links
+gsap.from('.stat-card', {
+    scrollTrigger: {
+        trigger: '.stats-grid',
+        start: 'top 80%'
+    },
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.1,
+    ease: 'power3.out'
+});
+
+// Skills 섹션
+gsap.from('.skill-card', {
+    scrollTrigger: {
+        trigger: '.skills-grid',
+        start: 'top 80%'
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.12,
+    ease: 'power3.out'
+});
+
+// Projects 섹션
+gsap.from('.project-card', {
+    scrollTrigger: {
+        trigger: '.projects-grid',
+        start: 'top 80%'
+    },
+    y: 50,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: 'power3.out'
+});
+
+// Contact 섹션
+gsap.from('.contact-content > *', {
+    scrollTrigger: {
+        trigger: '.contact-content',
+        start: 'top 85%'
+    },
+    y: 30,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.12,
+    ease: 'power3.out'
+});
+
+// ========================================
+// 부드러운 스크롤
+// ========================================
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
     });
 });
