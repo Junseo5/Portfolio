@@ -299,89 +299,97 @@ heroTimeline
     .from('.hero-cta', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
     .from('.hero-info', { y: 20, opacity: 0, duration: 0.6 }, '-=0.4');
 
-// 섹션 애니메이션
-const sections = document.querySelectorAll('.section');
+// 섹션 애니메이션 - 스크롤 위치와 상관없이 안정적으로 동작하도록 수정
+const createScrollAnimation = (targets, trigger, fromVars, animationVars) => {
+    const elements = gsap.utils.toArray(targets);
+    if (elements.length === 0) return;
 
+    // trigger가 문자열이면 요소 찾기, Element면 그대로 사용
+    const triggerEl = typeof trigger === 'string'
+        ? document.querySelector(trigger)
+        : trigger;
+    if (!triggerEl) return;
+
+    // 트리거 요소가 현재 뷰포트 안에 있는지 확인
+    const checkIfInView = () => {
+        const rect = triggerEl.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        // 트리거 상단이 뷰포트 85% 지점보다 위에 있으면 이미 지나간 것
+        return rect.top < windowHeight * 0.85;
+    };
+
+    // 이미 뷰포트 안에 있으면 즉시 표시 (애니메이션 없이)
+    if (checkIfInView()) {
+        gsap.set(elements, { opacity: 1, y: 0, clearProps: 'all' });
+        return;
+    }
+
+    // 아직 스크롤 전이면 애니메이션 설정
+    ScrollTrigger.create({
+        trigger: triggerEl,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+            gsap.from(elements, {
+                ...fromVars,
+                ...animationVars
+            });
+        }
+    });
+};
+
+// 섹션 헤더 애니메이션
+const sections = document.querySelectorAll('.section');
 sections.forEach(section => {
     const header = section.querySelector('.section-header');
     if (header) {
-        gsap.from(header, {
-            scrollTrigger: {
-                trigger: section,
-                start: 'top 80%',
-                toggleActions: 'play none none reverse'
-            },
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        });
+        createScrollAnimation(
+            header,
+            section,
+            { y: 40, opacity: 0 },
+            { duration: 0.8, ease: 'power3.out' }
+        );
     }
 });
 
 // About 섹션
-gsap.from('.about-text > *', {
-    scrollTrigger: {
-        trigger: '.about-content',
-        start: 'top 75%'
-    },
-    y: 30,
-    opacity: 0,
-    duration: 0.7,
-    stagger: 0.15,
-    ease: 'power3.out'
-});
+createScrollAnimation(
+    '.about-text > *',
+    '.about-content',
+    { y: 30, opacity: 0 },
+    { duration: 0.7, stagger: 0.15, ease: 'power3.out' }
+);
 
-gsap.from('.stat-card', {
-    scrollTrigger: {
-        trigger: '.stats-grid',
-        start: 'top 80%'
-    },
-    y: 30,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: 'power3.out'
-});
+createScrollAnimation(
+    '.stat-card',
+    '.stats-grid',
+    { y: 30, opacity: 0 },
+    { duration: 0.6, stagger: 0.1, ease: 'power3.out' }
+);
 
 // Skills 섹션
-gsap.from('.skill-card', {
-    scrollTrigger: {
-        trigger: '.skills-grid',
-        start: 'top 80%'
-    },
-    y: 40,
-    opacity: 0,
-    duration: 0.7,
-    stagger: 0.12,
-    ease: 'power3.out'
-});
+createScrollAnimation(
+    '.skill-card',
+    '.skills-grid',
+    { y: 40, opacity: 0 },
+    { duration: 0.7, stagger: 0.12, ease: 'power3.out' }
+);
 
 // Projects 섹션
-gsap.from('.project-card', {
-    scrollTrigger: {
-        trigger: '.projects-grid',
-        start: 'top 80%'
-    },
-    y: 50,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out'
-});
+createScrollAnimation(
+    '.project-card',
+    '.projects-grid',
+    { y: 50, opacity: 0 },
+    { duration: 0.8, stagger: 0.15, ease: 'power3.out' }
+);
 
 // Contact 섹션
-gsap.from('.contact-content > *', {
-    scrollTrigger: {
-        trigger: '.contact-content',
-        start: 'top 85%'
-    },
-    y: 30,
-    opacity: 0,
-    duration: 0.7,
-    stagger: 0.12,
-    ease: 'power3.out'
-});
+createScrollAnimation(
+    '.contact-content > *',
+    '.contact-content',
+    { y: 30, opacity: 0 },
+    { duration: 0.7, stagger: 0.12, ease: 'power3.out' }
+);
 
 // ========================================
 // 부드러운 스크롤
