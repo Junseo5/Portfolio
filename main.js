@@ -180,6 +180,9 @@ const translations = {
 
 // 언어 변경 함수
 function updateLanguage(lang) {
+    // html lang 속성 업데이트
+    document.documentElement.setAttribute('lang', lang);
+
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         const keys = key.split('.');
@@ -192,9 +195,11 @@ function updateLanguage(lang) {
         }
     });
 
-    // 버튼 상태 업데이트
+    // 버튼 상태 및 접근성 속성 업데이트
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        const isActive = btn.getAttribute('data-lang') === lang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
 
     // 설정 저장
