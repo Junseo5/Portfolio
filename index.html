@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="dark">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -7,6 +7,22 @@
     <meta name="color-scheme" content="dark light">
     <title>송준서 | Backend Developer & AI Engineer</title>
     <meta name="description" content="Python 백엔드와 AI 서비스 개발을 전문으로 하는 개발자 송준서의 포트폴리오입니다.">
+
+    <!-- FOUC 방지: 렌더링 전 테마 적용 -->
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme');
+            if (!theme) {
+                theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+            // meta theme-color도 동기화
+            var metaTheme = document.querySelector('meta[name="theme-color"]');
+            if (metaTheme) {
+                metaTheme.setAttribute('content', theme === 'dark' ? '#0a0a0b' : '#f5f5f7');
+            }
+        })();
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,9 +40,12 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
+    <!-- 스킵 네비게이션 (접근성) -->
+    <a href="#main-content" class="skip-link">본문으로 건너뛰기</a>
+
     <!-- 커스텀 커서 -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" aria-hidden="true"></div>
 
     <!-- 헤더 -->
     <header class="header">
@@ -43,7 +62,7 @@
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <!-- 히어로 섹션 -->
         <section id="home" class="hero">
             <div class="container">

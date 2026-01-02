@@ -2,22 +2,14 @@
 gsap.registerPlugin(ScrollTrigger);
 
 // ========================================
-// 테마 시스템
+// 테마 시스템 (초기화는 head에서 인라인으로 처리됨)
 // ========================================
 
 const initTheme = () => {
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
 
-    // 저장된 테마 또는 시스템 설정 확인
-    const getPreferredTheme = () => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) return savedTheme;
-
-        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    };
-
-    // 테마 적용
+    // 테마 적용 함수
     const setTheme = (theme) => {
         html.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
@@ -25,12 +17,9 @@ const initTheme = () => {
         // meta theme-color 업데이트
         const metaThemeColor = document.querySelector('meta[name="theme-color"]');
         if (metaThemeColor) {
-            metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0b' : '#fafafa');
+            metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0b' : '#f5f5f7');
         }
     };
-
-    // 초기 테마 설정
-    setTheme(getPreferredTheme());
 
     // 토글 버튼 클릭 이벤트
     if (themeToggle) {
@@ -41,7 +30,7 @@ const initTheme = () => {
         });
     }
 
-    // 시스템 테마 변경 감지
+    // 시스템 테마 변경 감지 (사용자가 수동 설정하지 않은 경우에만)
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
             setTheme(e.matches ? 'dark' : 'light');
@@ -243,6 +232,7 @@ const hasFinePointer = () => {
 };
 
 const initCustomCursor = () => {
+    // 터치 기기나 마우스 없는 환경에서는 비활성화
     if (isTouchDevice() && !hasFinePointer()) {
         return;
     }
@@ -254,20 +244,21 @@ const initCustomCursor = () => {
 
     document.body.classList.add('custom-cursor-enabled');
 
-    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .stat-card');
+    // gsap.quickTo 사용: 매번 새 트윈을 생성하지 않고 재사용 (성능 최적화)
+    const cursorX = gsap.quickTo(cursor, 'x', { duration: 0.1, ease: 'power2.out' });
+    const cursorY = gsap.quickTo(cursor, 'y', { duration: 0.1, ease: 'power2.out' });
+    const followerX = gsap.quickTo(follower, 'x', { duration: 0.25, ease: 'power2.out' });
+    const followerY = gsap.quickTo(follower, 'y', { duration: 0.25, ease: 'power2.out' });
 
     document.addEventListener('mousemove', (e) => {
-        gsap.to(cursor, {
-            x: e.clientX,
-            y: e.clientY,
-            duration: 0.1
-        });
-        gsap.to(follower, {
-            x: e.clientX,
-            y: e.clientY,
-            duration: 0.25
-        });
-    });
+        cursorX(e.clientX);
+        cursorY(e.clientY);
+        followerX(e.clientX);
+        followerY(e.clientY);
+    }, { passive: true }); // passive 이벤트로 스크롤 성능 개선
+
+    // 인터랙티브 요소 호버 효과
+    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .stat-card');
 
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
@@ -299,97 +290,40 @@ heroTimeline
     .from('.hero-cta', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
     .from('.hero-info', { y: 20, opacity: 0, duration: 0.6 }, '-=0.4');
 
-// 섹션 애니메이션 - 스크롤 위치와 상관없이 안정적으로 동작하도록 수정
-const createScrollAnimation = (targets, trigger, fromVars, animationVars) => {
-    const elements = gsap.utils.toArray(targets);
-    if (elements.length === 0) return;
+// ========================================
+// 스크롤 애니메이션 (정적 사이트 최적화)
+// ========================================
 
-    // trigger가 문자열이면 요소 찾기, Element면 그대로 사용
-    const triggerEl = typeof trigger === 'string'
-        ? document.querySelector(trigger)
-        : trigger;
-    if (!triggerEl) return;
+// 스크롤 애니메이션 설정
+const setupScrollAnimations = () => {
+    const selectors = [
+        '.section-header',
+        '.about-text > *',
+        '.stat-card',
+        '.skill-card',
+        '.project-card',
+        '.contact-content > *'
+    ];
 
-    // 트리거 요소가 현재 뷰포트 안에 있는지 확인
-    const checkIfInView = () => {
-        const rect = triggerEl.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        // 트리거 상단이 뷰포트 85% 지점보다 위에 있으면 이미 지나간 것
-        return rect.top < windowHeight * 0.85;
-    };
-
-    // 이미 뷰포트 안에 있으면 즉시 표시 (애니메이션 없이)
-    if (checkIfInView()) {
-        gsap.set(elements, { opacity: 1, y: 0, clearProps: 'all' });
-        return;
-    }
-
-    // 아직 스크롤 전이면 애니메이션 설정
-    ScrollTrigger.create({
-        trigger: triggerEl,
-        start: 'top 85%',
-        once: true,
-        onEnter: () => {
-            gsap.from(elements, {
-                ...fromVars,
-                ...animationVars
+    selectors.forEach(selector => {
+        gsap.utils.toArray(selector).forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 88%',
+                    once: true
+                },
+                opacity: 0,
+                y: 25,
+                duration: 0.5,
+                ease: 'power2.out',
+                immediateRender: false // 핵심: 초기 렌더링 방지
             });
-        }
+        });
     });
 };
 
-// 섹션 헤더 애니메이션
-const sections = document.querySelectorAll('.section');
-sections.forEach(section => {
-    const header = section.querySelector('.section-header');
-    if (header) {
-        createScrollAnimation(
-            header,
-            section,
-            { y: 40, opacity: 0 },
-            { duration: 0.8, ease: 'power3.out' }
-        );
-    }
-});
-
-// About 섹션
-createScrollAnimation(
-    '.about-text > *',
-    '.about-content',
-    { y: 30, opacity: 0 },
-    { duration: 0.7, stagger: 0.15, ease: 'power3.out' }
-);
-
-createScrollAnimation(
-    '.stat-card',
-    '.stats-grid',
-    { y: 30, opacity: 0 },
-    { duration: 0.6, stagger: 0.1, ease: 'power3.out' }
-);
-
-// Skills 섹션
-createScrollAnimation(
-    '.skill-card',
-    '.skills-grid',
-    { y: 40, opacity: 0 },
-    { duration: 0.7, stagger: 0.12, ease: 'power3.out' }
-);
-
-// Projects 섹션
-createScrollAnimation(
-    '.project-card',
-    '.projects-grid',
-    { y: 50, opacity: 0 },
-    { duration: 0.8, stagger: 0.15, ease: 'power3.out' }
-);
-
-// Contact 섹션
-createScrollAnimation(
-    '.contact-content > *',
-    '.contact-content',
-    { y: 30, opacity: 0 },
-    { duration: 0.7, stagger: 0.12, ease: 'power3.out' }
-);
+setupScrollAnimations();
 
 // ========================================
 // 부드러운 스크롤
