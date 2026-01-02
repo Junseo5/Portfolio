@@ -1,147 +1,180 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#050505">
-    <meta name="color-scheme" content="dark">
-    <title>Song Junseo | Creative Developer</title>
-    <meta name="description" content="Portfolio of Song Junseo, a developer specializing in Python, Backend, and AI services.">
-    
+    <meta name="theme-color" content="#0a0a0b">
+    <meta name="color-scheme" content="dark light">
+    <title>송준서 | Backend Developer & AI Engineer</title>
+    <meta name="description" content="Python 백엔드와 AI 서비스 개발을 전문으로 하는 개발자 송준서의 포트폴리오입니다.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Styles -->
     <link rel="stylesheet" href="./style.css">
-    
+
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <!-- RemixIcon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
+    <!-- 커스텀 커서 -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
+    <!-- 헤더 -->
     <header class="header">
         <a href="#home" class="logo">JUNSEO.</a>
+        <div class="header-right">
+            <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">
+                <i class="ri-sun-line icon-sun"></i>
+                <i class="ri-moon-line icon-moon"></i>
+            </button>
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="ko">KO</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
     </header>
-    
-    <!-- Language Toggle -->
-    <div class="lang-toggle">
-        <button class="lang-btn active" data-lang="ko">KO</button>
-        <span class="divider">|</span>
-        <button class="lang-btn" data-lang="en">EN</button>
-    </div>
 
     <main>
+        <!-- 히어로 섹션 -->
         <section id="home" class="hero">
-            <div class="hero-content">
-                <h2 class="hero-subtitle" data-i18n="hero.subtitle">Backend Developer & AI Engineer</h2>
-                <h1 class="hero-title">
-                    <span class="line" data-i18n="hero.title1">Building the</span>
-                    <span class="line" data-i18n="hero.title2">Future with</span>
-                    <span class="line text-gradient" data-i18n="hero.title3">Code & Flight.</span>
-                </h1>
-                <p class="hero-desc" data-i18n="hero.desc">
-                    Building robust backend systems and AI-powered services.
-                    Based in Seoul, KR.
-                </p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary" data-i18n="hero.viewWork">View Work</a>
-                    <a href="#contact" class="btn btn-outline" data-i18n="hero.contactMe">Contact Me</a>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="dot"></span>
+                        <span data-i18n="hero.badge">구직 중</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span data-i18n="hero.greeting">안녕하세요,</span><br>
+                        <span data-i18n="hero.name">송준서</span><span data-i18n="hero.role" class="highlight">입니다.</span>
+                    </h1>
+                    <p class="hero-desc" data-i18n="hero.desc">
+                        Python 기반 백엔드 시스템 구축과 AI 서비스 개발을 합니다.
+                        실제 사용자에게 가치를 전달하는 서비스를 만드는 데 집중합니다.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="ri-folder-line"></i>
+                            <span data-i18n="hero.viewWork">프로젝트 보기</span>
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="ri-mail-line"></i>
+                            <span data-i18n="hero.contact">연락하기</span>
+                        </a>
+                    </div>
+                    <div class="hero-info">
+                        <div class="hero-info-item">
+                            <i class="ri-map-pin-line"></i>
+                            <span>Seoul, KR</span>
+                        </div>
+                        <div class="hero-info-item">
+                            <i class="ri-mail-line"></i>
+                            <span>junseo5.dev@gmail.com</span>
+                        </div>
+                        <div class="hero-info-item">
+                            <i class="ri-github-fill"></i>
+                            <a href="https://github.com/Junseo5" target="_blank">github.com/Junseo5</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="circle-gradient"></div>
-                <!-- Abstract 3D shape or tech visual could go here -->
-            </div>
-            <div class="scroll-indicator">
-                <span data-i18n="hero.scroll">Scroll</span>
-                <div class="line"></div>
             </div>
         </section>
 
-        <section id="about" class="section about">
+        <!-- About 섹션 -->
+        <section id="about" class="section">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">01</span>
-                    <h2 class="section-title" data-i18n="about.title">About Me</h2>
+                    <p class="section-label" data-i18n="about.label">About</p>
+                    <h2 class="section-title" data-i18n="about.title">소개</h2>
                 </div>
-                <div class="about-grid">
+                <div class="about-content">
                     <div class="about-text">
                         <p class="lead" data-i18n="about.lead">
-                            I am Song Junseo, a passionate developer with a unique blend of skills in software engineering and drone technology.
+                            만들고 싶은 게 생기면 직접 부딪치며 배웁니다.
                         </p>
                         <p data-i18n="about.desc">
-                            Graduated from Seoul Robot High School, I have honed my skills in Python, Django, and FastAPI. 
-                            My journey isn't just about code; it's about solving real-world problems, whether it's creating 
-                            efficient SaaS platforms like the Discord R Chatbot or piloting unmanned multi-copters.
+                            마인크래프트 서버를 만들고 싶다는 생각으로 개발을 시작해 1,000명이 이용하는 서비스를 2년간 운영했습니다. SSAFY에서 AI 교육을 이수한 후, RAG 기반 Discord 챗봇 SaaS를 1인 개발하며 검색 정확도를 40%에서 80%까지 개선했습니다.
                         </p>
-                        <div class="about-stats">
-                            <div class="stat-item">
+                        <p data-i18n="about.desc2">
+                            코드를 작성하는 것을 넘어, 실제 사용자에게 가치를 전달하는 서비스를 만드는 데 집중합니다.
+                        </p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stats-grid">
+                            <div class="stat-card">
                                 <span class="stat-num">1+</span>
-                                <span class="stat-label" data-i18n="about.years">Years Coding</span>
+                                <span class="stat-label" data-i18n="about.years">Years</span>
                             </div>
-                            <div class="stat-item">
-                                <span class="stat-num">3+</span>
+                            <div class="stat-card">
+                                <span class="stat-num">4+</span>
                                 <span class="stat-label" data-i18n="about.projects">Projects</span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="about-image">
-                        <div class="profile-img-container">
-                            <!-- 프로필 이미지 제거됨 -->
-                            <div class="img-overlay"></div>
+                            <div class="stat-card">
+                                <span class="stat-num">1,000+</span>
+                                <span class="stat-label" data-i18n="about.users">Users</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="section skills">
+        <!-- Skills 섹션 -->
+        <section id="skills" class="section">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">02</span>
-                    <h2 class="section-title" data-i18n="skills.title">Expertise</h2>
+                    <p class="section-label" data-i18n="skills.label">Skills</p>
+                    <h2 class="section-title" data-i18n="skills.title">기술 스택</h2>
                 </div>
                 <div class="skills-grid">
                     <div class="skill-card">
                         <div class="skill-icon"><i class="ri-code-s-slash-line"></i></div>
-                        <h3 data-i18n="skills.python.title">Python Ecosystem</h3>
-                        <p data-i18n="skills.python.desc">Django, FastAPI, PyTorch. Building scalable backends and AI integrations.</p>
+                        <h3 data-i18n="skills.python.title">Python Backend</h3>
+                        <p data-i18n="skills.python.desc">Django, FastAPI로 REST API 설계 및 구축. PyTorch 기반 AI 모델 학습 경험.</p>
                     </div>
                     <div class="skill-card">
                         <div class="skill-icon"><i class="ri-brain-line"></i></div>
                         <h3 data-i18n="skills.ai.title">AI & RAG</h3>
-                        <p data-i18n="skills.ai.desc">Implementing Retrieval-Augmented Generation for intelligent chatbots and services.</p>
+                        <p data-i18n="skills.ai.desc">RAG 시스템 구축 및 검색 정확도 최적화. TTA, K-Fold, EMA 등 학습 기법 적용 경험.</p>
                     </div>
                     <div class="skill-card">
                         <div class="skill-icon"><i class="ri-server-line"></i></div>
-                        <h3 data-i18n="skills.devops.title">DevOps & Cloud</h3>
-                        <p data-i18n="skills.devops.desc">Linux server management, Docker, and cloud deployment strategies.</p>
+                        <h3 data-i18n="skills.devops.title">Servers & Infra</h3>
+                        <p data-i18n="skills.devops.desc">Linux 서버 구축 및 운영. Nginx, Cloudflare 활용한 서비스 배포 경험.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="section projects">
+        <!-- Projects 섹션 -->
+        <section id="projects" class="section">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">03</span>
-                    <h2 class="section-title" data-i18n="projects.title">Selected Works</h2>
+                    <p class="section-label" data-i18n="projects.label">Projects</p>
+                    <h2 class="section-title" data-i18n="projects.title">프로젝트</h2>
+                    <p class="section-desc" data-i18n="projects.desc">직접 기획하고 개발한 프로젝트들입니다.</p>
                 </div>
-                <div class="project-list">
+                <div class="projects-grid">
                     <!-- Project 1 -->
-                    <article class="project-item">
+                    <article class="project-card">
+                        <div class="project-visual">
+                            <div class="placeholder" style="background: linear-gradient(135deg, #5865F2, #404EED);">
+                                <i class="ri-discord-fill" style="color: white;"></i>
+                            </div>
+                        </div>
                         <div class="project-content">
-                            <h3 class="project-title" data-i18n="project.discord.title">Discord R Chatbot</h3>
+                            <span class="project-label">SaaS</span>
+                            <h3 class="project-title" data-i18n="project.discord.title">Discord R 챗봇</h3>
                             <p class="project-desc" data-i18n="project.discord.desc">
-                                A SaaS platform for game community management. Features real-time Q&A using RAG technology, 
-                                automating support for server administrators.
+                                게임 커뮤니티를 위한 AI 챗봇 SaaS. RAG 기반 실시간 Q&A 시스템을 구축하고, 검색 정확도를 40%에서 80%까지 개선했습니다.
                             </p>
                             <ul class="project-tags">
                                 <li>FastAPI</li>
@@ -149,110 +182,118 @@
                                 <li>ChromaDB</li>
                                 <li>Python</li>
                             </ul>
-                            <div class="project-links">
-                                <a href="https://rchat.kr" target="_blank" class="link-arrow" data-i18n="project.visit">Visit Site</a>
-                            </div>
-                        </div>
-                        <div class="project-visual">
-                            <div class="visual-placeholder" style="background: linear-gradient(45deg, #5865F2, #404EED);"></div>
+                            <a href="https://rchat.kr" target="_blank" class="project-link">
+                                <span data-i18n="project.visit">사이트 방문</span>
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
                         </div>
                     </article>
 
                     <!-- Project 2 -->
-                    <article class="project-item">
+                    <article class="project-card">
+                        <div class="project-visual">
+                            <div class="placeholder" style="background: linear-gradient(135deg, #8e44ad, #9b59b6);">
+                                <i class="ri-eye-line" style="color: white;"></i>
+                            </div>
+                        </div>
                         <div class="project-content">
-                            <h3 class="project-title" data-i18n="project.ssafy.title">SSAFY AI Challenge – VQA</h3>
+                            <span class="project-label">AI Competition</span>
+                            <h3 class="project-title" data-i18n="project.ssafy.title">SSAFY AI 챌린지 – VQA</h3>
                             <p class="project-desc" data-i18n="project.ssafy.desc">
-                                Improved VQA performance from baseline 0.76028 to 0.94187 using Qwen2.5-VL. 
-                                Performed data analysis, LoRA fine-tuning, TTA, and systematic experiment tracking on AWS G5/A100 infrastructure.
+                                Qwen2.5-VL 모델로 VQA 정확도를 0.76에서 0.94로 향상시켰습니다. TTA, K-Fold, EMA 등 다양한 기법을 실험했습니다.
                             </p>
                             <ul class="project-tags">
                                 <li>Qwen2.5-VL</li>
-                                <li>Python</li>
+                                <li>PyTorch</li>
                                 <li>AWS</li>
                                 <li>VQA</li>
                             </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/Junseo5/SSAFY_AI_PJT_2025" target="_blank" class="link-arrow" data-i18n="project.visit">Visit Site</a>
-                            </div>
-                        </div>
-                        <div class="project-visual">
-                            <div class="visual-placeholder" style="background: linear-gradient(45deg, #8e44ad, #9b59b6);"></div>
+                            <a href="https://github.com/Junseo5/SSAFY_AI_PJT_2025" target="_blank" class="project-link">
+                                <span>GitHub</span>
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
                         </div>
                     </article>
 
                     <!-- Project 3 -->
-                    <article class="project-item">
+                    <article class="project-card">
+                        <div class="project-visual">
+                            <div class="placeholder" style="background: linear-gradient(135deg, #f1c40f, #f39c12);">
+                                <i class="ri-shopping-cart-line" style="color: white;"></i>
+                            </div>
+                        </div>
                         <div class="project-content">
-                            <h3 class="project-title" data-i18n="project.self.title">SelF – Agricultural E-commerce</h3>
+                            <span class="project-label">E-commerce</span>
+                            <h3 class="project-title" data-i18n="project.self.title">SelF – 농산물 이커머스</h3>
                             <p class="project-desc" data-i18n="project.self.desc">
-                                E-commerce platform for agricultural products. Implemented the entire Django REST API backend (Members, Products, Orders). 
-                                Designed user behavior logging (Views, Cart, Wishlist, Purchase) and implemented recommendation algorithms. 
-                                Collaborated on Frontend design and layout discussions.
+                                Django REST API 백엔드 전체 구현 (회원, 상품, 주문). 사용자 행동 로그 기반 추천 알고리즘을 설계하고 구현했습니다.
                             </p>
                             <ul class="project-tags">
                                 <li>Django</li>
                                 <li>REST API</li>
-                                <li>Recommendation System</li>
-                                <li>Data Logging</li>
+                                <li>Recommendation</li>
                             </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/junDevCodes/SSAFY_Class_18_Team_4_Final_Capstone/tree/dev" target="_blank" class="link-arrow" data-i18n="project.visit">Visit Site</a>
-                            </div>
-                        </div>
-                        <div class="project-visual">
-                            <div class="visual-placeholder" style="background: linear-gradient(45deg, #f1c40f, #f39c12);"></div>
+                            <a href="https://github.com/junDevCodes/SSAFY_Class_18_Team_4_Final_Capstone/tree/dev" target="_blank" class="project-link">
+                                <span>GitHub</span>
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
                         </div>
                     </article>
 
                     <!-- Project 4 -->
-                    <article class="project-item">
+                    <article class="project-card">
+                        <div class="project-visual">
+                            <div class="placeholder" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">
+                                <i class="ri-gamepad-line" style="color: white;"></i>
+                            </div>
+                        </div>
                         <div class="project-content">
-                            <h3 class="project-title" data-i18n="project.minex.title">Mine X Network</h3>
+                            <span class="project-label">Server Operation</span>
+                            <h3 class="project-title" data-i18n="project.minex.title">Mine X 네트워크</h3>
                             <p class="project-desc" data-i18n="project.minex.desc">
-                                Operated a Minecraft server (Oct 2024 - May 2025) with 1,000+ cumulative players. 
-                                Focused on server optimization using Ubuntu Linux and proxy splitting. Implemented robust security measures including Cloudflare Spectrum and origin/proxy separation to defend against DDoS attacks. Developed custom plugins using Java.
+                                마인크래프트 서버 운영 (2년, 누적 유저 1,000+). Ubuntu Linux로 운영하고 Cloudflare Spectrum으로 DDoS 방어 환경을 구성했습니다.
                             </p>
                             <ul class="project-tags">
-                                <li>Ubuntu Linux</li>
-                                <li>Cloudflare Spectrum</li>
+                                <li>Ubuntu</li>
+                                <li>Cloudflare</li>
                                 <li>Java</li>
-                                <li>Server Security</li>
+                                <li>Security</li>
                             </ul>
-                        </div>
-                        <div class="project-visual">
-                            <div class="visual-placeholder" style="background: linear-gradient(45deg, #2ecc71, #27ae60);"></div>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section contact">
+        <!-- Contact 섹션 -->
+        <section id="contact" class="section">
             <div class="container">
-                <div class="contact-wrapper">
-                    <div class="contact-content">
-                        <h2 class="contact-title" data-i18n="contact.title">Let's Work Together</h2>
-                        <p class="contact-text" data-i18n="contact.desc">
-                            Interested in collaborating or have a project in mind? 
-                            I'm always open to new challenges in backend development and drone tech.
-                        </p>
-                        <div class="social-links">
-                            <a href="mailto:junseo5.dev@gmail.com">junseo5.dev@gmail.com</a>
-                            <a href="https://github.com/Junseo5" target="_blank">GitHub</a>
-                            <a href="https://junseo5.com" target="_blank">Portfolio</a>
-                        </div>
+                <div class="contact-content">
+                    <h2 class="contact-title" data-i18n="contact.title">연락하기</h2>
+                    <p class="contact-desc" data-i18n="contact.desc">
+                        협업 제안이나 궁금한 점이 있으시면 편하게 연락주세요.
+                    </p>
+                    <div class="contact-links">
+                        <a href="mailto:junseo5.dev@gmail.com" class="contact-link">
+                            <i class="ri-mail-line"></i>
+                            <span>junseo5.dev@gmail.com</span>
+                        </a>
+                        <a href="https://github.com/Junseo5" target="_blank" class="contact-link">
+                            <i class="ri-github-fill"></i>
+                            <span>GitHub</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <p data-i18n="footer.copyright">&copy; 2025 Song Junseo. All rights reserved.</p>
-                <p data-i18n="footer.credit">Designed & Built with 💻 & ☕</p>
+                <p data-i18n="footer.made">Made with code & coffee</p>
             </div>
         </div>
     </footer>
