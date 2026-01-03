@@ -92,7 +92,7 @@ const translations = {
             },
             minex: {
                 title: "Mine X Network",
-                desc: "Operated a Minecraft server for 2 years (1,000+ users). Ran on Ubuntu Linux with Cloudflare Spectrum for DDoS protection."
+                desc: "Operated a Minecraft server for 2 years (1,000+ users). Purchased hardware, built and operated Ubuntu Linux infrastructure from scratch, and configured DDoS protection using Cloudflare Spectrum."
             },
             visit: "Visit Site"
         },
@@ -152,7 +152,7 @@ const translations = {
             },
             minex: {
                 title: "Mine X 네트워크",
-                desc: "마인크래프트 서버 운영 (2년, 누적 유저 1,000+). Ubuntu Linux로 운영하고 Cloudflare Spectrum으로 DDoS 방어 환경을 구성했습니다."
+                desc: "마인크래프트 서버 운영 (2년, 누적 유저 1,000+). 하드웨어 구매부터 Ubuntu Linux 인프라 구축·운영까지 직접 수행하고, Cloudflare Spectrum으로 DDoS 방어 환경을 구성했습니다."
             },
             visit: "사이트 방문"
         },
