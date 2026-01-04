@@ -148,7 +148,7 @@ const translations = {
             },
             self: {
                 title: "SelF – 농산물 이커머스",
-                desc: "Django REST API 백엔드 전체 구현 (회원, 상품, 주문). 사용자 행동 로그 기반 추천 알고리즘을 설계하고 구현했습니다."
+                desc: "Django REST API 백엔드 전체 구현 (회원, 상품, 주문). 사용자 행동 로그 기반 추천 알고리즘 (ALS, Gap filling)을 설계하고 구현했습니다."
             },
             minex: {
                 title: "Mine X 네트워크",
