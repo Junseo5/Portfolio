@@ -69,7 +69,7 @@ const translations = {
             label: "Skills",
             title: "Tech Stack",
             python: { title: "Python Backend", desc: "Designing and building REST APIs with Django and FastAPI. Experience training AI models with PyTorch." },
-            ai: { title: "AI & RAG", desc: "Building RAG systems and optimizing retrieval quality. Experience applying techniques such as TTA, K-Fold, EMA." },
+            ai: { title: "AI", desc: "VQA fine-tuning, RAG system building and retrieval optimization, recommendation model ALS, Gap filling development and 4 model integration experience." },
             devops: { title: "Servers & Infra", desc: "Building and operating Linux servers. Experience deploying services with Nginx and Cloudflare." }
         },
         projects: {
@@ -129,7 +129,7 @@ const translations = {
             label: "Skills",
             title: "기술 스택",
             python: { title: "Python Backend", desc: "Django, FastAPI로 REST API 설계 및 구축. PyTorch 기반 AI 모델 학습 경험." },
-            ai: { title: "AI & RAG", desc: "RAG 시스템 구축 및 검색 정확도 최적화. TTA, K-Fold, EMA 등 학습 기법 적용 경험." },
+            ai: { title: "AI", desc: "VQA 파인튜닝, RAG 구축 및 검색 정확도 최적화, 추천 모델 ALS, Gap filling 제작 및 4개 모델 연동 경험." },
             devops: { title: "Servers & Infra", desc: "Linux 서버 구축 및 운영. Nginx, Cloudflare 활용한 서비스 배포 경험." }
         },
         projects: {
