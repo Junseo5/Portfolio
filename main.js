@@ -1,5 +1,8 @@
-// Register ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
+// GSAP 라이브러리 사용 가능 여부 확인
+const gsapAvailable = typeof gsap !== 'undefined';
+if (gsapAvailable && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 // ========================================
 // 테마 시스템 (초기화는 head에서 인라인으로 처리됨)
@@ -218,112 +221,53 @@ if (langParam && translations[langParam]) {
 }
 
 // ========================================
-// 커스텀 커서
+// 애니메이션 (GSAP 사용 가능 시에만 실행)
 // ========================================
 
-const isTouchDevice = () => {
-    return (('ontouchstart' in window) ||
-        (navigator.maxTouchPoints > 0) ||
-        (navigator.msMaxTouchPoints > 0));
-};
+if (gsapAvailable) {
+    // 히어로 애니메이션
+    const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-const hasFinePointer = () => {
-    return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-};
+    heroTimeline
+        .from('.logo', { y: -30, opacity: 0, duration: 0.8 })
+        .from('.header-right', { y: -30, opacity: 0, duration: 0.8 }, '-=0.6')
+        .from('.hero-badge', { y: 20, opacity: 0, duration: 0.6 }, '-=0.4')
+        .from('.hero-title', { y: 40, opacity: 0, duration: 0.8 }, '-=0.4')
+        .from('.hero-desc', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
+        .from('.hero-cta', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
+        .from('.hero-info', { y: 20, opacity: 0, duration: 0.6 }, '-=0.4');
 
-const initCustomCursor = () => {
-    // 터치 기기나 마우스 없는 환경에서는 비활성화
-    if (isTouchDevice() && !hasFinePointer()) {
-        return;
-    }
+    // 스크롤 애니메이션 설정
+    const setupScrollAnimations = () => {
+        const selectors = [
+            '.section-header',
+            '.about-text > *',
+            '.stat-card',
+            '.skill-card',
+            '.project-card',
+            '.contact-content > *'
+        ];
 
-    const cursor = document.querySelector('.cursor');
-    const follower = document.querySelector('.cursor-follower');
-
-    if (!cursor || !follower) return;
-
-    document.body.classList.add('custom-cursor-enabled');
-
-    // gsap.quickTo 사용: 매번 새 트윈을 생성하지 않고 재사용 (성능 최적화)
-    const cursorX = gsap.quickTo(cursor, 'x', { duration: 0.1, ease: 'power2.out' });
-    const cursorY = gsap.quickTo(cursor, 'y', { duration: 0.1, ease: 'power2.out' });
-    const followerX = gsap.quickTo(follower, 'x', { duration: 0.25, ease: 'power2.out' });
-    const followerY = gsap.quickTo(follower, 'y', { duration: 0.25, ease: 'power2.out' });
-
-    document.addEventListener('mousemove', (e) => {
-        cursorX(e.clientX);
-        cursorY(e.clientY);
-        followerX(e.clientX);
-        followerY(e.clientY);
-    }, { passive: true }); // passive 이벤트로 스크롤 성능 개선
-
-    // 인터랙티브 요소 호버 효과
-    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .stat-card');
-
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            gsap.to(cursor, { scale: 0, duration: 0.2 });
-            gsap.to(follower, { scale: 1.5, opacity: 0.3, duration: 0.2 });
-        });
-        el.addEventListener('mouseleave', () => {
-            gsap.to(cursor, { scale: 1, duration: 0.2 });
-            gsap.to(follower, { scale: 1, opacity: 0.6, duration: 0.2 });
-        });
-    });
-};
-
-initCustomCursor();
-
-// ========================================
-// 애니메이션
-// ========================================
-
-// 히어로 애니메이션
-const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-heroTimeline
-    .from('.logo', { y: -30, opacity: 0, duration: 0.8 })
-    .from('.header-right', { y: -30, opacity: 0, duration: 0.8 }, '-=0.6')
-    .from('.hero-badge', { y: 20, opacity: 0, duration: 0.6 }, '-=0.4')
-    .from('.hero-title', { y: 40, opacity: 0, duration: 0.8 }, '-=0.4')
-    .from('.hero-desc', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
-    .from('.hero-cta', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
-    .from('.hero-info', { y: 20, opacity: 0, duration: 0.6 }, '-=0.4');
-
-// ========================================
-// 스크롤 애니메이션 (정적 사이트 최적화)
-// ========================================
-
-// 스크롤 애니메이션 설정
-const setupScrollAnimations = () => {
-    const selectors = [
-        '.section-header',
-        '.about-text > *',
-        '.stat-card',
-        '.skill-card',
-        '.project-card',
-        '.contact-content > *'
-    ];
-
-    selectors.forEach(selector => {
-        gsap.utils.toArray(selector).forEach(el => {
-            gsap.from(el, {
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top 88%',
-                    once: true
-                },
-                opacity: 0,
-                y: 25,
-                duration: 0.5,
-                ease: 'power2.out',
-                immediateRender: false // 핵심: 초기 렌더링 방지
+        selectors.forEach(selector => {
+            gsap.utils.toArray(selector).forEach(el => {
+                gsap.from(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 88%',
+                        once: true
+                    },
+                    opacity: 0,
+                    y: 25,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                    immediateRender: false // 핵심: 초기 렌더링 방지
+                });
             });
         });
-    });
-};
+    };
 
-setupScrollAnimations();
+    setupScrollAnimations();
+}
 
 // ========================================
 // 부드러운 스크롤
@@ -331,13 +275,17 @@ setupScrollAnimations();
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
+            // URL 해시 업데이트 (브라우저 히스토리 지원)
+            history.pushState(null, '', href);
         }
     });
 });

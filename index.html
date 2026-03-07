@@ -32,9 +32,9 @@
     <!-- Styles -->
     <link rel="stylesheet" href="./style.css">
 
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- GSAP (defer로 렌더링 차단 방지) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
     <!-- RemixIcon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -42,10 +42,6 @@
 <body>
     <!-- 스킵 네비게이션 (접근성) -->
     <a href="#main-content" class="skip-link">본문으로 건너뛰기</a>
-
-    <!-- 커스텀 커서 -->
-    <div class="cursor" aria-hidden="true"></div>
-    <div class="cursor-follower" aria-hidden="true"></div>
 
     <!-- 헤더 -->
     <header class="header">
@@ -67,10 +63,6 @@
         <section id="home" class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <div class="hero-badge">
-                        <span class="dot"></span>
-                        <span data-i18n="hero.badge">구직 중</span>
-                    </div>
                     <h1 class="hero-title">
                         <span data-i18n="hero.greeting">안녕하세요,</span><br>
                         <span data-i18n="hero.name">송준서</span><span data-i18n="hero.role" class="highlight">입니다.</span>
@@ -317,6 +309,6 @@
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
 </body>
 </html>

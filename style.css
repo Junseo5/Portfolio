@@ -135,58 +135,6 @@ body {
     transition: var(--transition-theme);
 }
 
-/* 터치 디바이스가 아닌 경우에만 커스텀 커서 */
-@media (hover: hover) and (pointer: fine) {
-    body.custom-cursor-enabled {
-        cursor: none;
-    }
-
-    body.custom-cursor-enabled a,
-    body.custom-cursor-enabled button {
-        cursor: none;
-    }
-}
-
-/* 커스텀 커서 */
-.cursor,
-.cursor-follower {
-    display: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .cursor {
-        display: block;
-        width: 8px;
-        height: 8px;
-        background: var(--accent-color);
-        border-radius: 50%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        will-change: transform;
-    }
-
-    .cursor-follower {
-        display: block;
-        width: 36px;
-        height: 36px;
-        border: 1.5px solid var(--accent-color);
-        border-radius: 50%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 9998;
-        transform: translate(-50%, -50%);
-        transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-        will-change: transform;
-        opacity: 0.6;
-    }
-}
-
 /* ========================================
    타이포그래피
    ======================================== */
