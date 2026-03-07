@@ -86,19 +86,27 @@ const translations = {
                 title: "Discord R Chatbot",
                 desc: "AI chatbot SaaS for game communities. Built a RAG-based real-time Q&A system and improved search accuracy from 40% to 80%."
             },
-            ssafy: {
-                title: "SSAFY AI Challenge – VQA",
-                desc: "Improved VQA accuracy with Qwen2.5-VL from 0.76 to 0.94. Ran experiments with TTA, K-Fold, EMA and various techniques."
-            },
-            self: {
-                title: "SelF – Agricultural E-commerce",
-                desc: "Implemented Django REST API backend (members, products, orders). Designed and implemented recommendation algorithms based on user behavior logs."
-            },
             minex: {
                 title: "Mine X Network",
                 desc: "Operated a Minecraft server for 2 years (1,000+ users). Purchased hardware, built and operated Ubuntu Linux infrastructure from scratch, and configured DDoS protection using Cloudflare Spectrum."
             },
-            visit: "Visit Site"
+            visit: "Visit Site",
+            detail: "Details",
+            ssafy: {
+                title: "SSAFY AI Challenge – VQA",
+                desc: "Improved VQA accuracy with Qwen2.5-VL from 0.76 to 0.94. Ran experiments with TTA, K-Fold, EMA and various techniques.",
+                challenge: { title: "Key Problem Solving" },
+                challenge1: { title: "Training/Inference Misalignment Fix", desc: "Discovered a structural issue where answer tokens were missing during training, preventing the model from learning answer patterns. By including answers in the Assistant message and switching to add_generation_prompt=False, the model accurately learned answer token positions, significantly boosting accuracy." },
+                challenge2: { title: "T4 GPU Memory Constraints", desc: "Faced BFloat16 incompatibility and OOM issues on T4 GPUs. Resolved by switching to Float16, replacing FlashAttention with SDPA Attention, and combining 4-bit QLoRA + Gradient Checkpointing + Batch Size 1 + Gradient Accumulation 4 for memory efficiency." },
+                challenge3: { title: "Overfitting Prevention & Generalization", desc: "Addressed single-model overfitting and performance variance through Stratified K-Fold, EMA/SWA, TTA, and Majority Voting ensemble, achieving a final accuracy of 0.94." }
+            },
+            self: {
+                title: "SelF – Agricultural E-commerce",
+                desc: "Implemented Django REST API backend (members, products, orders). Designed and implemented recommendation algorithms based on user behavior logs.",
+                challenge: { title: "Key Problem Solving" },
+                challenge1: { title: "Unstructured Data Cleaning & Accuracy Improvement", desc: "Agricultural product data was unstructured with inconsistent categories, units, and naming, causing low recommendation accuracy. Built a data normalization pipeline and designed category mapping logic to improve model input quality." },
+                challenge2: { title: "Recommendation Cold Start Problem", desc: "New users lacked behavioral data, making personalized recommendations impossible. Designed a 4-model ensemble combining popularity-based and recipe Gap filling models to provide meaningful recommendations even for users without behavioral data." }
+            }
         },
         contact: {
             title: "Get in Touch",
@@ -147,19 +155,27 @@ const translations = {
                 title: "Discord R 챗봇",
                 desc: "게임 커뮤니티를 위한 AI 챗봇 SaaS. RAG 기반 실시간 Q&A 시스템을 구축하고, 검색 정확도를 40%에서 80%까지 개선했습니다."
             },
-            ssafy: {
-                title: "SSAFY AI 챌린지 – VQA",
-                desc: "Qwen2.5-VL 모델로 VQA 정확도를 0.76에서 0.94로 향상시켰습니다. TTA, K-Fold, EMA 등 다양한 기법을 실험했습니다."
-            },
-            self: {
-                title: "SelF – 농산물 이커머스",
-                desc: "Django REST API 백엔드 전체 구현 (회원, 상품, 주문). 사용자 행동 로그 기반 추천 알고리즘 (ALS, Gap filling)을 설계하고 구현했습니다."
-            },
             minex: {
                 title: "Mine X 네트워크",
                 desc: "마인크래프트 서버 운영 (2년, 누적 유저 1,000+). 하드웨어 구매부터 Ubuntu Linux 인프라 구축·운영까지 직접 수행하고, Cloudflare Spectrum으로 DDoS 방어 환경을 구성했습니다."
             },
-            visit: "사이트 방문"
+            visit: "사이트 방문",
+            detail: "자세히 보기",
+            ssafy: {
+                title: "SSAFY AI 챌린지 – VQA",
+                desc: "Qwen2.5-VL 모델로 VQA 정확도를 0.76에서 0.94로 향상시켰습니다. TTA, K-Fold, EMA 등 다양한 기법을 실험했습니다.",
+                challenge: { title: "대표 문제 해결" },
+                challenge1: { title: "학습/추론 불일치 해결", desc: "학습 시 정답 토큰이 누락되어 모델이 정답 패턴을 학습하지 못하는 구조적 문제를 발견했습니다. Assistant 메시지에 정답을 포함하고 add_generation_prompt=False로 전환하여 정답 토큰 위치를 정확히 학습시켰고, 이것만으로 정확도가 크게 향상되었습니다." },
+                challenge2: { title: "T4 GPU 메모리 제약 극복", desc: "T4 GPU에서 BFloat16 미지원 및 OOM 문제가 발생했습니다. Float16 전환, FlashAttention 대신 SDPA Attention 적용, 4-bit QLoRA + Gradient Checkpointing + Batch Size 1 + Gradient Accumulation 4 조합으로 메모리 효율을 확보했습니다." },
+                challenge3: { title: "과적합 방지 및 일반화", desc: "단일 모델의 과적합과 성능 편차 문제를 Stratified K-Fold, EMA/SWA, TTA, Majority Voting 앙상블로 해결하여 최종 정확도 0.94를 달성했습니다." }
+            },
+            self: {
+                title: "SelF – 농산물 이커머스",
+                desc: "Django REST API 백엔드 전체 구현 (회원, 상품, 주문). 사용자 행동 로그 기반 추천 알고리즘 (ALS, Gap filling)을 설계하고 구현했습니다.",
+                challenge: { title: "대표 문제 해결" },
+                challenge1: { title: "비정형 데이터 정제 및 정확도 개선", desc: "농산물 데이터가 비정형적이고 카테고리·단위·명칭이 통일되지 않아 추천 모델의 정확도가 낮았습니다. 데이터 정규화 파이프라인을 구축하고 카테고리 매핑 로직을 설계하여 모델 입력 품질을 개선했습니다." },
+                challenge2: { title: "추천 개인화 cold start 문제", desc: "신규 사용자의 행동 로그가 부족해 개인화 추천이 작동하지 않는 문제가 있었습니다. 인기 기반 추천과 레시피 Gap filling 모델을 결합한 4개 모델 앙상블 구조를 설계하여, 행동 데이터가 없는 사용자에게도 의미 있는 추천을 제공했습니다." }
+            }
         },
         contact: {
             title: "연락하기",
@@ -276,6 +292,19 @@ if (gsapAvailable) {
 
     setupScrollAnimations();
 }
+
+// ========================================
+// 프로젝트 상세 토글
+// ========================================
+
+document.querySelectorAll('.project-detail-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const detail = btn.nextElementSibling;
+        const isOpen = !detail.hidden;
+        detail.hidden = isOpen;
+        btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+});
 
 // ========================================
 // 부드러운 스크롤

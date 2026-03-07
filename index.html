@@ -220,10 +220,25 @@
                                 <li>AWS</li>
                                 <li>VQA</li>
                             </ul>
-                            <a href="https://github.com/Junseo5/SSAFY_AI_PJT_2025" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <span>GitHub</span>
-                                <i class="ri-arrow-right-line"></i>
-                            </a>
+                            <button class="project-detail-toggle" aria-expanded="false" data-i18n-aria="project.detail.toggle">
+                                <span data-i18n="project.detail">자세히 보기</span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </button>
+                            <div class="project-detail" hidden>
+                                <h4 data-i18n="project.ssafy.challenge.title">대표 문제 해결</h4>
+                                <div class="detail-item">
+                                    <strong data-i18n="project.ssafy.challenge1.title">학습/추론 불일치 해결</strong>
+                                    <p data-i18n="project.ssafy.challenge1.desc">학습 시 정답 토큰이 누락되어 모델이 정답 패턴을 학습하지 못하는 구조적 문제를 발견했습니다. Assistant 메시지에 정답을 포함하고 add_generation_prompt=False로 전환하여 정답 토큰 위치를 정확히 학습시켰고, 이것만으로 정확도가 크게 향상되었습니다.</p>
+                                </div>
+                                <div class="detail-item">
+                                    <strong data-i18n="project.ssafy.challenge2.title">T4 GPU 메모리 제약 극복</strong>
+                                    <p data-i18n="project.ssafy.challenge2.desc">T4 GPU에서 BFloat16 미지원 및 OOM 문제가 발생했습니다. Float16 전환, FlashAttention 대신 SDPA Attention 적용, 4-bit QLoRA + Gradient Checkpointing + Batch Size 1 + Gradient Accumulation 4 조합으로 메모리 효율을 확보했습니다.</p>
+                                </div>
+                                <div class="detail-item">
+                                    <strong data-i18n="project.ssafy.challenge3.title">과적합 방지 및 일반화</strong>
+                                    <p data-i18n="project.ssafy.challenge3.desc">단일 모델의 과적합과 성능 편차 문제를 Stratified K-Fold, EMA/SWA, TTA, Majority Voting 앙상블로 해결하여 최종 정확도 0.94를 달성했습니다.</p>
+                                </div>
+                            </div>
                         </div>
                     </article>
 
@@ -235,7 +250,7 @@
                             </div>
                         </div>
                         <div class="project-content">
-                            <span class="project-label">E-commerce</span>
+                            <span class="project-label">E-commerce · 최우수상</span>
                             <h3 class="project-title" data-i18n="project.self.title">SelF – 농산물 이커머스</h3>
                             <p class="project-desc" data-i18n="project.self.desc">
                                 Django REST API 백엔드 전체 구현 (회원, 상품, 주문). 사용자 행동 로그 기반 추천 알고리즘 (ALS, Gap filling)을 설계하고 구현했습니다.
@@ -245,10 +260,21 @@
                                 <li>REST API</li>
                                 <li>Recommendation</li>
                             </ul>
-                            <a href="https://github.com/SellFresh/SSAFY_Class_18_Team_4_Final_Capstone/tree/dev" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <span>GitHub</span>
-                                <i class="ri-arrow-right-line"></i>
-                            </a>
+                            <button class="project-detail-toggle" aria-expanded="false" data-i18n-aria="project.detail.toggle">
+                                <span data-i18n="project.detail">자세히 보기</span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </button>
+                            <div class="project-detail" hidden>
+                                <h4 data-i18n="project.self.challenge.title">대표 문제 해결</h4>
+                                <div class="detail-item">
+                                    <strong data-i18n="project.self.challenge1.title">비정형 데이터 정제 및 정확도 개선</strong>
+                                    <p data-i18n="project.self.challenge1.desc">농산물 데이터가 비정형적이고 카테고리·단위·명칭이 통일되지 않아 추천 모델의 정확도가 낮았습니다. 데이터 정규화 파이프라인을 구축하고 카테고리 매핑 로직을 설계하여 모델 입력 품질을 개선했습니다.</p>
+                                </div>
+                                <div class="detail-item">
+                                    <strong data-i18n="project.self.challenge2.title">추천 개인화 cold start 문제</strong>
+                                    <p data-i18n="project.self.challenge2.desc">신규 사용자의 행동 로그가 부족해 개인화 추천이 작동하지 않는 문제가 있었습니다. 인기 기반 추천과 레시피 Gap filling 모델을 결합한 4개 모델 앙상블 구조를 설계하여, 행동 데이터가 없는 사용자에게도 의미 있는 추천을 제공했습니다.</p>
+                                </div>
+                            </div>
                         </div>
                     </article>
 
