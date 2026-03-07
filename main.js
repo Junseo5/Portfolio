@@ -56,7 +56,8 @@ const translations = {
             role: ".",
             desc: "I build backend systems and AI-powered services with Python. I focus on shipping services that deliver real value to users.",
             viewWork: "View Projects",
-            contact: "Contact Me"
+            contact: "Contact Me",
+            resume: "Download Resume"
         },
         about: {
             label: "About",
@@ -116,7 +117,8 @@ const translations = {
             role: "입니다.",
             desc: "Python 기반 백엔드 시스템 구축과 AI 서비스 개발을 합니다. 실제 사용자에게 가치를 전달하는 서비스를 만드는 데 집중합니다.",
             viewWork: "프로젝트 보기",
-            contact: "연락하기"
+            contact: "연락하기",
+            resume: "이력서 다운로드"
         },
         about: {
             label: "About",
@@ -193,6 +195,12 @@ function updateLanguage(lang) {
         btn.classList.toggle('active', isActive);
         btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
+
+    // 이력서 링크에 현재 언어 파라미터 반영
+    const resumeLink = document.querySelector('a[href*="resume.html"]');
+    if (resumeLink) {
+        resumeLink.setAttribute('href', './resume.html?lang=' + lang);
+    }
 
     // 설정 저장
     localStorage.setItem('preferredLanguage', lang);
