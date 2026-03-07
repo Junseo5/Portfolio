@@ -135,58 +135,6 @@ body {
     transition: var(--transition-theme);
 }
 
-/* 터치 디바이스가 아닌 경우에만 커스텀 커서 */
-@media (hover: hover) and (pointer: fine) {
-    body.custom-cursor-enabled {
-        cursor: none;
-    }
-
-    body.custom-cursor-enabled a,
-    body.custom-cursor-enabled button {
-        cursor: none;
-    }
-}
-
-/* 커스텀 커서 */
-.cursor,
-.cursor-follower {
-    display: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .cursor {
-        display: block;
-        width: 8px;
-        height: 8px;
-        background: var(--accent-color);
-        border-radius: 50%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        will-change: transform;
-    }
-
-    .cursor-follower {
-        display: block;
-        width: 36px;
-        height: 36px;
-        border: 1.5px solid var(--accent-color);
-        border-radius: 50%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 9998;
-        transform: translate(-50%, -50%);
-        transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-        will-change: transform;
-        opacity: 0.6;
-    }
-}
-
 /* ========================================
    타이포그래피
    ======================================== */
@@ -235,6 +183,7 @@ ul {
 
 .section {
     padding: 6rem 0;
+    scroll-margin-top: 5rem;
 }
 
 .section-header {
@@ -399,6 +348,7 @@ ul {
     align-items: center;
     padding: 8rem 2rem 4rem;
     position: relative;
+    scroll-margin-top: 5rem;
 }
 
 .hero-content {
@@ -564,6 +514,7 @@ ul {
 }
 
 .stat-num {
+    display: block;
     font-family: var(--font-heading);
     font-size: 2rem;
     font-weight: 800;
@@ -573,6 +524,7 @@ ul {
 }
 
 .stat-label {
+    display: block;
     font-size: 0.8rem;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -587,46 +539,41 @@ ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.25rem;
+    counter-reset: skill;
 }
 
 .skill-card {
-    padding: 1.75rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    border-left: 2px solid var(--border-color);
     transition: var(--transition);
-    box-shadow: var(--shadow-card, none);
+    counter-increment: skill;
 }
 
 .skill-card:hover {
-    border-color: var(--accent-color);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+    border-left-color: var(--accent-color);
 }
 
-.skill-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    background: var(--accent-glow);
-    border-radius: 12px;
-    font-size: 1.5rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
+.skill-card::before {
+    content: counter(skill, decimal-leading-zero);
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
 }
 
 .skill-card h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
 
 .skill-card p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 /* ========================================
@@ -734,6 +681,77 @@ ul {
 .project-link i {
     font-size: 1rem;
     transition: var(--transition);
+}
+
+/* 프로젝트 상세 토글 버튼 */
+.project-detail-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: var(--font-body);
+    transition: var(--transition);
+}
+
+.project-detail-toggle:hover {
+    opacity: 0.8;
+}
+
+.project-detail-toggle i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.project-detail-toggle[aria-expanded="true"] i {
+    transform: rotate(180deg);
+}
+
+/* 프로젝트 상세 내용 */
+.project-detail {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.project-detail[hidden] {
+    display: none;
+}
+
+.project-detail h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.detail-item {
+    margin-bottom: 1rem;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-item strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.detail-item p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
 }
 
 /* ========================================

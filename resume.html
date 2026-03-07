@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>송준서 | 이력서</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* 이력서 문서 스타일 */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #1a1a1a;
+            background: #e8e8e8;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* 문서 컨테이너 - A4 비율 */
+        .document {
+            max-width: 794px;
+            margin: 2rem auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 48px 56px;
+        }
+
+        /* 상단 액션 바 */
+        .action-bar {
+            max-width: 794px;
+            margin: 0 auto 0;
+            padding: 1rem 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-download {
+            background: #4f46e5;
+            color: #fff;
+        }
+
+        .btn-download:hover {
+            background: #4338ca;
+        }
+
+        .btn-back {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-back:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-lang {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-lang:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-lang.active {
+            background: #4f46e5;
+            color: #fff;
+        }
+
+        /* 헤더 영역 */
+        .resume-header {
+            border-bottom: 2px solid #1a1a1a;
+            padding-bottom: 20px;
+            margin-bottom: 28px;
+        }
+
+        .resume-name {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+
+        .resume-role {
+            font-size: 15px;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 12px;
+        }
+
+        .resume-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .resume-contact a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .resume-contact a:hover {
+            color: #4f46e5;
+        }
+
+        /* 섹션 스타일 */
+        .resume-section {
+            margin-bottom: 24px;
+        }
+
+        .resume-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #4f46e5;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+        }
+
+        /* 소개 */
+        .resume-summary p {
+            font-size: 13.5px;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        /* 기술 스택 */
+        .resume-skills-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 8px 16px;
+            font-size: 13.5px;
+        }
+
+        .resume-skill-category {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .resume-skill-items {
+            color: #444;
+        }
+
+        /* 프로젝트 */
+        .resume-project {
+            margin-bottom: 18px;
+        }
+
+        .resume-project:last-child {
+            margin-bottom: 0;
+        }
+
+        .resume-project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .resume-project-title {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .resume-project-type {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4f46e5;
+        }
+
+        .resume-project-desc {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.65;
+            margin-bottom: 6px;
+        }
+
+        .resume-project-tech {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .resume-project-tech strong {
+            color: #555;
+            font-weight: 600;
+        }
+
+        /* 경험/교육 */
+        .resume-item {
+            margin-bottom: 14px;
+        }
+
+        .resume-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .resume-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .resume-item-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .resume-item-date {
+            font-size: 12.5px;
+            color: #777;
+            white-space: nowrap;
+        }
+
+        .resume-item-sub {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 4px;
+        }
+
+        .resume-item-desc {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .resume-item-desc li {
+            list-style: none;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .resume-item-desc li::before {
+            content: '\2022';
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+
+        /* 인쇄 스타일 */
+        @media print {
+            body {
+                background: #fff;
+            }
+
+            .action-bar {
+                display: none !important;
+            }
+
+            .document {
+                margin: 0;
+                padding: 40px 48px;
+                box-shadow: none;
+                max-width: none;
+            }
+
+            .resume-section {
+                break-inside: avoid;
+            }
+
+            .resume-project {
+                break-inside: avoid;
+            }
+
+            a {
+                color: inherit !important;
+            }
+
+            @page {
+                size: A4;
+                margin: 12mm 8mm;
+            }
+        }
+
+        /* 모바일 반응형 */
+        @media (max-width: 600px) {
+            .document {
+                margin: 0;
+                padding: 24px 20px;
+                box-shadow: none;
+            }
+
+            .action-bar {
+                padding: 0.75rem 20px;
+                flex-wrap: wrap;
+            }
+
+            .resume-contact {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .resume-skills-grid {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+
+            .resume-project-header {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .resume-item-header {
+                flex-direction: column;
+                gap: 2px;
+            }
+        }
+
+        /* 언어 전환 */
+        [data-lang-content="en"] { display: none; }
+        [data-lang-content="ko"] { display: block; }
+        span[data-lang-content="ko"],
+        a[data-lang-content="ko"] { display: inline; }
+        span[data-lang-content="en"],
+        a[data-lang-content="en"] { display: none; }
+
+        body.lang-en [data-lang-content="en"] { display: block; }
+        body.lang-en [data-lang-content="ko"] { display: none; }
+        body.lang-en span[data-lang-content="en"],
+        body.lang-en a[data-lang-content="en"] { display: inline; }
+        body.lang-en span[data-lang-content="ko"],
+        body.lang-en a[data-lang-content="ko"] { display: none; }
+    </style>
+</head>
+<body>
+    <!-- 액션 바 (인쇄 시 숨김) -->
+    <div class="action-bar">
+        <a href="./index.html" class="action-btn btn-back" id="backBtn">
+            <span data-lang-content="ko">&#8592; 포트폴리오로 돌아가기</span>
+            <span data-lang-content="en">&#8592; Back to Portfolio</span>
+        </a>
+        <button class="action-btn btn-lang" id="langKo" onclick="setLang('ko')">KO</button>
+        <button class="action-btn btn-lang" id="langEn" onclick="setLang('en')">EN</button>
+        <button class="action-btn btn-download" onclick="window.print()">
+            <span data-lang-content="ko">&#128196; PDF 다운로드</span>
+            <span data-lang-content="en">&#128196; Download PDF</span>
+        </button>
+    </div>
+
+    <div class="document">
+        <!-- 헤더 -->
+        <header class="resume-header">
+            <h1 class="resume-name">
+                <span data-lang-content="ko">송준서</span>
+                <span data-lang-content="en">Junseo Song</span>
+            </h1>
+            <p class="resume-role">Backend Developer & AX Engineer</p>
+            <div class="resume-contact">
+                <span>Seoul, South Korea</span>
+                <a href="mailto:junseo5.dev@gmail.com">junseo5.dev@gmail.com</a>
+                <a href="https://github.com/Junseo5" target="_blank" rel="noopener noreferrer">github.com/Junseo5</a>
+                <a href="https://junseo5.com" target="_blank" rel="noopener noreferrer">junseo5.com</a>
+            </div>
+        </header>
+
+        <!-- 소개 -->
+        <section class="resume-section">
+            <h2 class="resume-section-title">
+                <span data-lang-content="ko">소개</span>
+                <span data-lang-content="en">Summary</span>
+            </h2>
+            <div class="resume-summary">
+                <p data-lang-content="ko">
+                    Python 기반 백엔드 시스템 구축과 AI 서비스 개발을 전문으로 합니다. 마인크래프트 서버 운영으로 개발을 시작해 1,000명이 이용하는 서비스를 2년간 운영했으며, SSAFY에서 AI 교육 이수 후 RAG 기반 Discord 챗봇 SaaS를 1인 개발하여 검색 정확도를 40%에서 80%까지 개선했습니다. 코드를 작성하는 것을 넘어, 실제 사용자에게 가치를 전달하는 서비스를 만드는 데 집중합니다.
+                </p>
+                <p data-lang-content="en">
+                    I specialize in building Python backend systems and AI-powered services. I started coding by running a Minecraft server that grew to over 1,000 users across two years. After completing an AI curriculum at SSAFY, I built a RAG-based Discord chatbot SaaS as a solo developer, improving search accuracy from 40% to 80%. I focus not just on writing code, but on shipping services that deliver real value to users.
+                </p>
+            </div>
+        </section>
+
+        <!-- 기술 스택 -->
+        <section class="resume-section">
+            <h2 class="resume-section-title">
+                <span data-lang-content="ko">기술 스택</span>
+                <span data-lang-content="en">Skills</span>
+            </h2>
+            <div class="resume-skills-grid">
+                <span class="resume-skill-category">Backend</span>
+                <span class="resume-skill-items">Python, Django, FastAPI, REST API</span>
+
+                <span class="resume-skill-category">AI / ML</span>
+                <span class="resume-skill-items">PyTorch, RAG, VQA, ALS, ChromaDB, Qwen2.5-VL</span>
+
+                <span class="resume-skill-category">Infra / DevOps</span>
+                <span class="resume-skill-items">Linux (Ubuntu), Nginx, Cloudflare, AWS</span>
+
+                <span class="resume-skill-category">Others</span>
+                <span class="resume-skill-items">Git, Discord API, Java</span>
+            </div>
+        </section>
+
+        <!-- 프로젝트 -->
+        <section class="resume-section">
+            <h2 class="resume-section-title">
+                <span data-lang-content="ko">프로젝트</span>
+                <span data-lang-content="en">Projects</span>
+            </h2>
+
+            <!-- Discord R 챗봇 -->
+            <div class="resume-project">
+                <div class="resume-project-header">
+                    <h3 class="resume-project-title">
+                        <span data-lang-content="ko">Discord R 챗봇</span>
+                        <span data-lang-content="en">Discord R Chatbot</span>
+                    </h3>
+                    <span class="resume-project-type">SaaS</span>
+                </div>
+                <p class="resume-project-desc" data-lang-content="ko">
+                    게임 커뮤니티를 위한 AI 챗봇 SaaS를 1인 개발. RAG 기반 실시간 Q&A 시스템을 구축하고, 검색 정확도를 40%에서 80%까지 개선했습니다. ChromaDB를 활용한 벡터 검색 파이프라인을 설계하고 최적화했습니다.
+                </p>
+                <p class="resume-project-desc" data-lang-content="en">
+                    Solo-developed an AI chatbot SaaS for game communities. Built a RAG-based real-time Q&A system and improved search accuracy from 40% to 80%. Designed and optimized a vector search pipeline using ChromaDB.
+                </p>
+                <p class="resume-project-tech"><strong>Tech:</strong> FastAPI, RAG, ChromaDB, Python</p>
+            </div>
+
+            <!-- SSAFY AI 챌린지 -->
+            <div class="resume-project">
+                <div class="resume-project-header">
+                    <h3 class="resume-project-title">
+                        <span data-lang-content="ko">SSAFY AI 챌린지 - VQA</span>
+                        <span data-lang-content="en">SSAFY AI Challenge - VQA</span>
+                    </h3>
+                    <span class="resume-project-type">AI Competition</span>
+                </div>
+                <p class="resume-project-desc" data-lang-content="ko">
+                    Qwen2.5-VL 모델을 파인튜닝하여 VQA 정확도를 0.76에서 0.94로 향상시켰습니다. TTA(Test-Time Augmentation), K-Fold 교차 검증, EMA(Exponential Moving Average) 등 다양한 기법을 실험하고 적용했습니다.
+                </p>
+                <p class="resume-project-desc" data-lang-content="en">
+                    Improved VQA accuracy from 0.76 to 0.94 by fine-tuning Qwen2.5-VL. Experimented with TTA, K-Fold cross-validation, EMA, and various other techniques.
+                </p>
+                <p class="resume-project-tech"><strong>Tech:</strong> Qwen2.5-VL, PyTorch, AWS, VQA</p>
+            </div>
+
+            <!-- SelF -->
+            <div class="resume-project">
+                <div class="resume-project-header">
+                    <h3 class="resume-project-title">
+                        <span data-lang-content="ko">SelF - 농산물 이커머스</span>
+                        <span data-lang-content="en">SelF - Agricultural E-commerce</span>
+                    </h3>
+                    <span class="resume-project-type">E-commerce · 최우수상</span>
+                </div>
+                <p class="resume-project-desc" data-lang-content="ko">
+                    Django REST API 백엔드 전체 구현 (회원, 상품, 주문). 사용자 행동 로그 기반 추천 알고리즘(ALS, Gap filling)을 설계하고, 4개 모델을 연동하는 추천 시스템을 구현했습니다. 최우수상 수상.
+                </p>
+                <p class="resume-project-desc" data-lang-content="en">
+                    Implemented the entire Django REST API backend (members, products, orders). Designed recommendation algorithms (ALS, Gap filling) based on user behavior logs and built a system integrating 4 recommendation models. Awarded Grand Prize.
+                </p>
+                <p class="resume-project-tech"><strong>Tech:</strong> Django, REST API, ALS, Recommendation System</p>
+            </div>
+
+            <!-- ANI -->
+            <div class="resume-project">
+                <div class="resume-project-header">
+                    <h3 class="resume-project-title">
+                        <span data-lang-content="ko">ANI – AI 뉴스 큐레이팅</span>
+                        <span data-lang-content="en">ANI – AI News Curation</span>
+                    </h3>
+                    <span class="resume-project-type">AI News Platform</span>
+                </div>
+                <p class="resume-project-desc" data-lang-content="ko">
+                    AI 기반 개인 맞춤형 뉴스 큐레이팅 서비스의 Django 백엔드를 전체 설계 및 구현했습니다. GPT-4o-mini 기반 SSE 스트리밍 AI 챗봇, Elasticsearch 뉴스 검색, 코사인 유사도 기반 개인화 추천, 관리자 통계 대시보드를 개발했습니다.
+                </p>
+                <p class="resume-project-desc" data-lang-content="en">
+                    Designed and implemented the entire Django backend for an AI-powered personalized news curation service. Developed GPT-4o-mini SSE streaming chatbot, Elasticsearch news search, cosine similarity-based personalized recommendations, and admin statistics dashboard.
+                </p>
+                <p class="resume-project-tech"><strong>Tech:</strong> Django, Elasticsearch, GPT-4o-mini, Kafka, Docker, PostgreSQL</p>
+            </div>
+
+            <!-- Mine X -->
+            <div class="resume-project">
+                <div class="resume-project-header">
+                    <h3 class="resume-project-title">
+                        <span data-lang-content="ko">Mine X 네트워크</span>
+                        <span data-lang-content="en">Mine X Network</span>
+                    </h3>
+                    <span class="resume-project-type">Server Operation</span>
+                </div>
+                <p class="resume-project-desc" data-lang-content="ko">
+                    마인크래프트 서버를 2년간 운영하여 누적 유저 1,000명 이상을 달성했습니다. 하드웨어 구매부터 Ubuntu Linux 인프라 구축 및 운영까지 직접 수행하고, Cloudflare Spectrum으로 DDoS 방어 환경을 구성했습니다.
+                </p>
+                <p class="resume-project-desc" data-lang-content="en">
+                    Operated a Minecraft server for 2 years with 1,000+ cumulative users. Managed everything from hardware procurement to Ubuntu Linux infrastructure setup, and configured DDoS protection using Cloudflare Spectrum.
+                </p>
+                <p class="resume-project-tech"><strong>Tech:</strong> Ubuntu, Cloudflare Spectrum, Java, Security</p>
+            </div>
+        </section>
+
+        <!-- 교육 -->
+        <section class="resume-section">
+            <h2 class="resume-section-title">
+                <span data-lang-content="ko">교육</span>
+                <span data-lang-content="en">Education</span>
+            </h2>
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <h3 class="resume-item-title">
+                        <span data-lang-content="ko">삼성 청년 SW 아카데미 (SSAFY)</span>
+                        <span data-lang-content="en">Samsung Software Academy For Youth (SSAFY)</span>
+                    </h3>
+                    <span class="resume-item-date">2025 - 2026</span>
+                </div>
+                <p class="resume-item-sub" data-lang-content="ko">마이스터고 트랙</p>
+                <p class="resume-item-sub" data-lang-content="en">Meister High School Track</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 언어 설정
+        function setLang(lang) {
+            if (lang === 'en') {
+                document.body.classList.add('lang-en');
+                document.documentElement.setAttribute('lang', 'en');
+                document.title = 'Junseo Song | Resume';
+            } else {
+                document.body.classList.remove('lang-en');
+                document.documentElement.setAttribute('lang', 'ko');
+                document.title = '송준서 | 이력서';
+            }
+            // 버튼 활성 상태 업데이트
+            document.getElementById('langKo').classList.toggle('active', lang === 'ko');
+            document.getElementById('langEn').classList.toggle('active', lang === 'en');
+            // 설정 저장
+            localStorage.setItem('resumeLang', lang);
+        }
+
+        // 초기화
+        (function() {
+            // 포트폴리오 사이트의 언어 설정 또는 URL 파라미터 우선
+            var params = new URLSearchParams(window.location.search);
+            var lang = params.get('lang') || localStorage.getItem('preferredLanguage') || localStorage.getItem('resumeLang') || 'ko';
+            setLang(lang);
+
+            // ?print=true 파라미터가 있으면 자동으로 인쇄 다이얼로그 열기
+            if (params.get('print') === 'true') {
+                setTimeout(function() { window.print(); }, 500);
+            }
+        })();
+    </script>
+</body>
+</html>
