@@ -106,6 +106,13 @@ const translations = {
                 challenge: { title: "Key Problem Solving" },
                 challenge1: { title: "Unstructured Data Cleaning & Accuracy Improvement", desc: "Agricultural product data was unstructured with inconsistent categories, units, and naming, causing low recommendation accuracy. Built a data normalization pipeline and designed category mapping logic to improve model input quality." },
                 challenge2: { title: "Recommendation Cold Start Problem", desc: "New users lacked behavioral data, making personalized recommendations impossible. Designed a 4-model ensemble combining popularity-based and recipe Gap filling models to provide meaningful recommendations even for users without behavioral data." }
+            },
+            ani: {
+                title: "ANI – AI News Curation",
+                desc: "AI-powered personalized news curation service. Designed and implemented the entire Django backend, GPT-4o-mini SSE streaming chatbot, Elasticsearch search, and personalized recommendation system.",
+                challenge: { title: "Key Problem Solving" },
+                challenge1: { title: "Real-time AI Chatbot SSE Streaming Stabilization", desc: "The GPT-4o-mini chatbot experienced connection drops and timeout issues during SSE streaming. Implemented FormData transmission support, 120-second timeout configuration, and multimodal (image/PDF) attachment handling. Built a hybrid search pipeline leveraging Elasticsearch results as context." },
+                challenge2: { title: "Admin Statistics Real-time Aggregation Fallback", desc: "Statistics data appeared empty for periods without pre-aggregated snapshots. Implemented AdminReportQueryService to generate reports in real-time from article source data, with support for hourly (24-slot) and period-based (daily/weekly/monthly/yearly) reports." }
             }
         },
         contact: {
@@ -175,6 +182,13 @@ const translations = {
                 challenge: { title: "대표 문제 해결" },
                 challenge1: { title: "비정형 데이터 정제 및 정확도 개선", desc: "농산물 데이터가 비정형적이고 카테고리·단위·명칭이 통일되지 않아 추천 모델의 정확도가 낮았습니다. 데이터 정규화 파이프라인을 구축하고 카테고리 매핑 로직을 설계하여 모델 입력 품질을 개선했습니다." },
                 challenge2: { title: "추천 개인화 cold start 문제", desc: "신규 사용자의 행동 로그가 부족해 개인화 추천이 작동하지 않는 문제가 있었습니다. 인기 기반 추천과 레시피 Gap filling 모델을 결합한 4개 모델 앙상블 구조를 설계하여, 행동 데이터가 없는 사용자에게도 의미 있는 추천을 제공했습니다." }
+            },
+            ani: {
+                title: "ANI – AI 뉴스 큐레이팅",
+                desc: "AI 기반 개인 맞춤형 뉴스 큐레이팅 서비스. Django 백엔드 전체 설계 및 구현, GPT-4o-mini 기반 SSE 스트리밍 챗봇, Elasticsearch 검색, 개인화 추천 시스템을 개발했습니다.",
+                challenge: { title: "대표 문제 해결" },
+                challenge1: { title: "실시간 AI 챗봇 SSE 스트리밍 안정화", desc: "GPT-4o-mini 기반 챗봇에서 SSE 스트리밍 응답 시 연결 끊김과 타임아웃 문제가 발생했습니다. FormData 전송 지원, 120초 타임아웃 설정, 멀티모달(이미지/PDF) 첨부 처리를 구현하고, Elasticsearch 검색 결과를 컨텍스트로 활용하는 하이브리드 검색 파이프라인을 구축했습니다." },
+                challenge2: { title: "관리자 통계 실시간 집계 Fallback 설계", desc: "사전 집계 스냅샷이 누락된 구간의 통계 데이터가 비어 표시되는 문제가 있었습니다. 기사 원천 데이터에서 실시간으로 리포트를 생성하는 AdminReportQueryService를 구현하고, 시간별(hourly) 24슬롯 데이터와 기간별(일/주/월/연) 리포트를 지원하는 fallback 로직을 설계했습니다." }
             }
         },
         contact: {

@@ -129,7 +129,7 @@
                                 <span class="stat-label" data-i18n="about.years">Years</span>
                             </div>
                             <div class="stat-card">
-                                <span class="stat-num">4+</span>
+                                <span class="stat-num">5+</span>
                                 <span class="stat-label" data-i18n="about.projects">Projects</span>
                             </div>
                             <div class="stat-card">
@@ -279,6 +279,44 @@
                     </article>
 
                     <!-- Project 4 -->
+                    <article class="project-card">
+                        <div class="project-visual">
+                            <div class="placeholder" style="background: linear-gradient(135deg, #3498db, #2980b9);">
+                                <i class="ri-newspaper-line" style="color: white;"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-label">AI News Platform</span>
+                            <h3 class="project-title" data-i18n="project.ani.title">ANI – AI 뉴스 큐레이팅</h3>
+                            <p class="project-desc" data-i18n="project.ani.desc">
+                                AI 기반 개인 맞춤형 뉴스 큐레이팅 서비스. Django 백엔드 전체 설계 및 구현, GPT-4o-mini 기반 SSE 스트리밍 챗봇, Elasticsearch 검색, 개인화 추천 시스템을 개발했습니다.
+                            </p>
+                            <ul class="project-tags">
+                                <li>Django</li>
+                                <li>Elasticsearch</li>
+                                <li>GPT-4o-mini</li>
+                                <li>Docker</li>
+                                <li>Kafka</li>
+                            </ul>
+                            <button class="project-detail-toggle" aria-expanded="false" data-i18n-aria="project.detail.toggle">
+                                <span data-i18n="project.detail">자세히 보기</span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </button>
+                            <div class="project-detail" hidden>
+                                <h4 data-i18n="project.ani.challenge.title">대표 문제 해결</h4>
+                                <div class="detail-item">
+                                    <strong data-i18n="project.ani.challenge1.title">실시간 AI 챗봇 SSE 스트리밍 안정화</strong>
+                                    <p data-i18n="project.ani.challenge1.desc">GPT-4o-mini 기반 챗봇에서 SSE 스트리밍 응답 시 연결 끊김과 타임아웃 문제가 발생했습니다. FormData 전송 지원, 120초 타임아웃 설정, 멀티모달(이미지/PDF) 첨부 처리를 구현하고, Elasticsearch 검색 결과를 컨텍스트로 활용하는 하이브리드 검색 파이프라인을 구축했습니다.</p>
+                                </div>
+                                <div class="detail-item">
+                                    <strong data-i18n="project.ani.challenge2.title">관리자 통계 실시간 집계 Fallback 설계</strong>
+                                    <p data-i18n="project.ani.challenge2.desc">사전 집계 스냅샷이 누락된 구간의 통계 데이터가 비어 표시되는 문제가 있었습니다. 기사 원천 데이터에서 실시간으로 리포트를 생성하는 AdminReportQueryService를 구현하고, 시간별(hourly) 24슬롯 데이터와 기간별(일/주/월/연) 리포트를 지원하는 fallback 로직을 설계했습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 5 -->
                     <article class="project-card">
                         <div class="project-visual">
                             <div class="placeholder" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">
