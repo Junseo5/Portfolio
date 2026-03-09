@@ -57,7 +57,7 @@ const translations = {
             desc: "I build backend systems and AI-powered services with Python. I focus on shipping services that deliver real value to users.",
             viewWork: "View Projects",
             contact: "Contact Me",
-            resume: "Download Resume"
+            resume: "Download Portfolio"
         },
         about: {
             label: "About",
@@ -133,7 +133,7 @@ const translations = {
             desc: "Python 기반 백엔드 시스템 구축과 AI 서비스 개발을 합니다. 실제 사용자에게 가치를 전달하는 서비스를 만드는 데 집중합니다.",
             viewWork: "프로젝트 보기",
             contact: "연락하기",
-            resume: "이력서 다운로드"
+            resume: "포트폴리오 다운로드"
         },
         about: {
             label: "About",
