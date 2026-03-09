@@ -337,6 +337,33 @@ ul {
     color: #fff;
 }
 
+/* 헤더 다운로드 버튼 */
+.btn-header-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: #fff;
+    border-radius: 8px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.btn-header-download:hover {
+    background: var(--accent-hover);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.btn-header-download i {
+    font-size: 1rem;
+}
+
 /* ========================================
    히어로 섹션
    ======================================== */
@@ -863,6 +890,15 @@ ul {
 
     .header-right {
         gap: 0.5rem;
+    }
+
+    .btn-header-download span {
+        display: none;
+    }
+
+    .btn-header-download {
+        padding: 0.45rem;
+        border-radius: 8px;
     }
 
     .theme-toggle {
