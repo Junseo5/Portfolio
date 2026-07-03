@@ -730,6 +730,11 @@ ul {
     opacity: 0.8;
 }
 
+/* 상세 토글과 링크가 한 카드에 함께 있을 때 간격 확보 */
+.project-detail + .project-link {
+    margin-top: 1rem;
+}
+
 .project-detail-toggle i {
     font-size: 1.1rem;
     transition: transform 0.3s ease;

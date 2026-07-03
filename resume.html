@@ -500,6 +500,24 @@
                 <p class="resume-project-tech"><strong>Tech:</strong> Django, Elasticsearch, GPT-4o-mini, Kafka, Docker, PostgreSQL</p>
             </div>
 
+            <!-- Sleeper -->
+            <div class="resume-project">
+                <div class="resume-project-header">
+                    <h3 class="resume-project-title">
+                        <span data-lang-content="ko">Sleeper – AI 수면 사운드 분석</span>
+                        <span data-lang-content="en">Sleeper – AI Sleep Sound Analysis</span>
+                    </h3>
+                    <span class="resume-project-type">On-device AI</span>
+                </div>
+                <p class="resume-project-desc" data-lang-content="ko">
+                    수면 중 마이크로 수집한 오디오를 분석해 이갈이·코골이를 감지하는 온디바이스 AI 서비스의 AI 파트를 담당했습니다. 이갈이의 이벤트적 특성(2초)과 소리의 문맥(30초)을 함께 보는 2-stage 모델을 설계하고, 실제 수면 환경을 고려한 저음량 데이터 증강, PaSST 모델 학습(V1~V14)·평가, ONNX INT8 온디바이스 배포를 수행했습니다. 온디바이스 오탐은 기기 녹음 앱의 입력 전처리 차이를 원인으로 규명해 보수적 threshold로 해결했습니다.
+                </p>
+                <p class="resume-project-desc" data-lang-content="en">
+                    Led the AI part of an on-device AI service that analyzes microphone audio during sleep to detect bruxism and snoring. Designed a two-stage model capturing both the event-like nature of bruxism (2s) and the sound's context (30s), performed low-volume data augmentation reflecting real sleep conditions, trained and evaluated PaSST models (V1–V14), and deployed on-device via ONNX INT8. Diagnosed on-device false positives as a mismatch from the recording app's input preprocessing and resolved them with conservative thresholds.
+                </p>
+                <p class="resume-project-tech"><strong>Tech:</strong> PaSST, PyTorch, ONNX, Log-Mel, Android</p>
+            </div>
+
             <!-- Mine X -->
             <div class="resume-project">
                 <div class="resume-project-header">
