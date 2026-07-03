@@ -91,6 +91,7 @@ const translations = {
                 desc: "Operated a Minecraft server for 2 years (1,000+ users). Purchased hardware, built and operated Ubuntu Linux infrastructure from scratch, and configured DDoS protection using Cloudflare Spectrum."
             },
             visit: "Visit Site",
+            github: "View on GitHub",
             detail: "Details",
             ssafy: {
                 title: "SSAFY AI Challenge – VQA",
@@ -113,6 +114,14 @@ const translations = {
                 challenge: { title: "Key Problem Solving" },
                 challenge1: { title: "Real-time AI Chatbot SSE Streaming Stabilization", desc: "The GPT-4o-mini chatbot experienced connection drops and timeout issues during SSE streaming. Implemented FormData transmission support, 120-second timeout configuration, and multimodal (image/PDF) attachment handling. Built a hybrid search pipeline leveraging Elasticsearch results as context." },
                 challenge2: { title: "Admin Statistics Real-time Aggregation Fallback", desc: "Statistics data appeared empty for periods without pre-aggregated snapshots. Implemented AdminReportQueryService to generate reports in real-time from article source data, with support for hourly (24-slot) and period-based (daily/weekly/monthly/yearly) reports." }
+            },
+            sleeper: {
+                title: "Sleeper – AI Sleep Sound Analysis",
+                desc: "An on-device AI service that analyzes microphone audio recorded during sleep to detect bruxism and snoring. Starting from the insight that 'bruxism is a momentary event while snoring is a sustained pattern,' I designed a two-stage architecture, and on the AI team I owned data augmentation, model training (PaSST V1–V14), evaluation, and ONNX deployment.",
+                challenge: { title: "Design Rationale & Problem Solving" },
+                challenge1: { title: "A Two-stage Model Rooted in the Nature of the Sound", desc: "Seeing bruxism as a momentary, event-like sound, I set the event-detection window to 2 seconds. But 2 seconds alone lacked the context to confirm whether a sound was truly bruxism, so I additionally trained a 30-second verification model that looks at the surrounding background audio, completing a two-stage pipeline (2s event detection → 30s context verification)." },
+                challenge2: { title: "Low-volume Data Augmentation Reflecting Real Sleep Conditions", desc: "I recognized a large volume gap between the recordings used for training and the sound actually reaching the mic during sleep (affected by pillow, distance, and posture). So I augmented the data down to far lower volume levels than usual, training the model to be robust to faint real-world sounds and verifying it on a dedicated low-volume validation set." },
+                challenge3: { title: "Data-driven Root-cause Analysis of On-device False Positives", desc: "False positives surged after on-device deployment. Rather than blaming the model first, I recorded on the actual device and compared the inputs, confirming the cause was the phone recording app's built-in input preprocessing (auto gain / noise handling) that shifted the input characteristics away from training. I re-validated against real app audio (4h29m, 538 clips) and applied conservative per-class thresholds (bruxism 0.950, snore 0.875) to suppress the false positives." }
             }
         },
         contact: {
@@ -167,6 +176,7 @@ const translations = {
                 desc: "마인크래프트 서버 운영 (2년, 누적 유저 1,000+). 하드웨어 구매부터 Ubuntu Linux 인프라 구축·운영까지 직접 수행하고, Cloudflare Spectrum으로 DDoS 방어 환경을 구성했습니다."
             },
             visit: "사이트 방문",
+            github: "GitHub 보기",
             detail: "자세히 보기",
             ssafy: {
                 title: "SSAFY AI 챌린지 – VQA",
@@ -189,6 +199,14 @@ const translations = {
                 challenge: { title: "대표 문제 해결" },
                 challenge1: { title: "실시간 AI 챗봇 SSE 스트리밍 안정화", desc: "GPT-4o-mini 기반 챗봇에서 SSE 스트리밍 응답 시 연결 끊김과 타임아웃 문제가 발생했습니다. FormData 전송 지원, 120초 타임아웃 설정, 멀티모달(이미지/PDF) 첨부 처리를 구현하고, Elasticsearch 검색 결과를 컨텍스트로 활용하는 하이브리드 검색 파이프라인을 구축했습니다." },
                 challenge2: { title: "관리자 통계 실시간 집계 Fallback 설계", desc: "사전 집계 스냅샷이 누락된 구간의 통계 데이터가 비어 표시되는 문제가 있었습니다. 기사 원천 데이터에서 실시간으로 리포트를 생성하는 AdminReportQueryService를 구현하고, 시간별(hourly) 24슬롯 데이터와 기간별(일/주/월/연) 리포트를 지원하는 fallback 로직을 설계했습니다." }
+            },
+            sleeper: {
+                title: "Sleeper – AI 수면 사운드 분석",
+                desc: "수면 중 마이크로 수집한 오디오를 분석해 이갈이·코골이를 감지하는 온디바이스 AI 서비스. '이갈이는 순간적인 이벤트, 코골이는 지속적인 패턴'이라는 소리의 특성 차이에서 출발해 2-stage 구조를 설계했고, AI 파트에서 데이터 증강·모델 학습(PaSST V1~V14)·평가·ONNX 배포까지 담당했습니다.",
+                challenge: { title: "설계 관점과 문제 해결" },
+                challenge1: { title: "소리의 특성에서 출발한 2-stage 모델 설계", desc: "이갈이는 순간적으로 발생하는 이벤트성 소리라고 보고 이벤트 감지 단위를 2초로 정했습니다. 다만 2초만으로는 그 소리가 실제 이갈이인지 판단할 문맥이 부족하다고 판단해, 앞뒤 배경음까지 함께 보는 30초 검증 모델을 추가로 학습시켜 2-stage(2초 이벤트 감지 → 30초 문맥 검증) 구조를 완성했습니다." },
+                challenge2: { title: "실제 수면 환경을 고려한 저음량 데이터 증강", desc: "학습에 쓴 녹음본과, 실제 수면 중 베개·거리·자세로 인해 마이크에 들어오는 소리 사이에는 큰 음량 차이가 있다고 보았습니다. 그래서 일반적인 증강보다 훨씬 낮은 음량대까지 포함하도록 데이터를 증강해, 실제 환경의 작은 소리에도 강인하도록 학습하고 저음량 검증셋으로 별도 확인했습니다." },
+                challenge3: { title: "온디바이스 오탐의 데이터 기반 원인 규명", desc: "디바이스 탑재 후 오탐이 크게 늘었습니다. 모델을 의심하기 전에 실제 기기로 직접 녹음해 입력을 비교한 결과, 휴대폰 녹음 앱에 내장된 입력 전처리(자동 게인·노이즈 처리)로 학습 때와 입력 특성이 달라진 것이 원인임을 확인했습니다. 이를 반영해 앱 음원 기준으로 재검증(4시간 29분·538클립)하고, 클래스별 보수적 threshold(이갈이 0.950, 코골이 0.875)를 적용해 오탐을 억제했습니다." }
             }
         },
         contact: {
